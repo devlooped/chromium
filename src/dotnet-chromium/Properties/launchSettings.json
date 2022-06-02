@@ -1,7 +1,13 @@
 {
   "profiles": {
     "Chromium": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "--headless https://clarius.org"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "commandLineArgs": "dotnet-chromium.dll --headless https://clarius.org",
+      "distributionName": ""
     }
   }
 }
