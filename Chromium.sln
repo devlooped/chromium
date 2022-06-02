@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7C8C799A-D411-40CE-8072-2A58379AC76C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.netconfig = .netconfig
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Build.targets = src\Directory.Build.targets
+		src\Directory.Packages.props = src\Directory.Packages.props
+		src\Directory.props = src\Directory.props
+		src\Directory.targets = src\Directory.targets
+		src\nuget.config = src\nuget.config
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.linux-x64", "src\chromium-linux-x64\chromium.linux-x64.msbuildproj", "{64F0CBDB-18EE-4F83-B1AF-8BB49C524278}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.win-x64", "src\chromium-win-x64\chromium.win-x64.msbuildproj", "{B9C4882E-0A2D-4A49-B21E-625612313312}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-chromium", "src\dotnet-chromium\dotnet-chromium.csproj", "{30A4C096-8FFB-467A-9411-A9049953E850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chromium", "src\chromium\chromium.csproj", "{B6479D22-0EC5-4B50-92FA-8A865F68B4D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{97FAB98D-2FFC-41E4-B573-B8B9B47209F9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64F0CBDB-18EE-4F83-B1AF-8BB49C524278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F0CBDB-18EE-4F83-B1AF-8BB49C524278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F0CBDB-18EE-4F83-B1AF-8BB49C524278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F0CBDB-18EE-4F83-B1AF-8BB49C524278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C4882E-0A2D-4A49-B21E-625612313312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C4882E-0A2D-4A49-B21E-625612313312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C4882E-0A2D-4A49-B21E-625612313312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C4882E-0A2D-4A49-B21E-625612313312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A4C096-8FFB-467A-9411-A9049953E850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A4C096-8FFB-467A-9411-A9049953E850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A4C096-8FFB-467A-9411-A9049953E850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A4C096-8FFB-467A-9411-A9049953E850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6479D22-0EC5-4B50-92FA-8A865F68B4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6479D22-0EC5-4B50-92FA-8A865F68B4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6479D22-0EC5-4B50-92FA-8A865F68B4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6479D22-0EC5-4B50-92FA-8A865F68B4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97FAB98D-2FFC-41E4-B573-B8B9B47209F9} = {7C8C799A-D411-40CE-8072-2A58379AC76C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40B0F70C-ECE2-48A4-B6E4-FB5EFE121A8C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>chromium</PackageId>
+    <Description>Allows referencing a portable version of Chromium for Windows and Linux and locating it for launching.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGetizer" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\chromium-linux-x64\chromium.linux-x64.msbuildproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\chromium-win-x64\chromium.win-x64.msbuildproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

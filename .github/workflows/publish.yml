@@ -1,0 +1,47 @@
+﻿# Builds a final release version and pushes to nuget.org 
+# whenever a release is published.
+# Requires: secrets.NUGET_API_KEY
+
+name: publish
+on:
+  release:
+    types: [released]
+
+env:
+  DOTNET_NOLOGO: true
+  Configuration: Release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v2
+        with: 
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: ⚙ dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: ⏬ download
+        run: |
+          mkdir obj
+          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/chrome-win.zip
+          unzip obj/chrome-win.zip -d src/chromium-win-x64
+          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/chrome-linux.zip
+          unzip obj/chrome-linux.zip -d src/chromium-linux-x64
+
+      - name: 🙏 build
+        run: dotnet build -m:1 -p:version=${GITHUB_REF#refs/*/v}
+
+      - name: 🧪 test
+        uses: ./.github/workflows/test
+
+      - name: 📦 pack
+        run: dotnet pack -m:1 -p:version=${GITHUB_REF#refs/*/v}
+
+      - name: 🚀 nuget
+        run: dotnet nuget push ./bin/**/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate

@@ -1,0 +1,53 @@
+﻿# Builds and runs tests in all three supported OSes
+# Pushes CI feed if secrets.SLEET_CONNECTION is provided
+
+name: build
+on: 
+  workflow_dispatch:
+  push:
+    branches: [ main, dev, 'feature/*', 'rel/*' ]
+    paths-ignore:
+      - changelog.md
+      - code-of-conduct.md
+      - security.md
+      - support.md
+      - readme.md
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  DOTNET_NOLOGO: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v2
+
+      - name: ⚙ dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: ⏬ download
+        run: |
+          mkdir obj
+          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/chrome-win.zip
+          unzip obj/chrome-win.zip -d src/chromium-win-x64
+          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/chrome-linux.zip
+          unzip obj/chrome-linux.zip -d src/chromium-linux-x64
+
+      - name: 🙏 build
+        run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
+
+      - name: 📦 pack
+        run: dotnet pack -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
+
+      - name: 🚀 sleet
+        env:
+          SLEET_CONNECTION: ${{ secrets.SLEET_CONNECTION }}
+        if: env.SLEET_CONNECTION != ''
+        run: |
+          dotnet tool install -g --version 4.0.18 sleet 
+          sleet push bin --config none -f --verbose -p "SLEET_FEED_CONTAINER=nuget" -p "SLEET_FEED_CONNECTIONSTRING=${{ secrets.SLEET_CONNECTION }}" -p "SLEET_FEED_TYPE=azure" || echo "No packages found"
