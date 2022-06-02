@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Chromium": {
-      "commandName": "Project",
-      "workingDirectory": "C:\\Delete"
+      "commandName": "Project"
     }
   }
 }
