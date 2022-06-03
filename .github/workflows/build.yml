@@ -33,10 +33,18 @@ jobs:
       - name: ⏬ download
         run: |
           mkdir obj
-          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/chrome-win.zip
-          unzip obj/chrome-win.zip -d src/chromium.win-x64
-          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/chrome-linux.zip
-          unzip obj/chrome-linux.zip -d src/chromium.linux-x64
+          
+          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/win-x64.zip
+          unzip obj/win-x64.zip -d src/chromium.win-x64
+
+          curl https://download-chromium.appspot.com/dl/Win?type=snapshots -L -o obj/win-x86.zip
+          unzip obj/win-x86.zip -d src/chromium.win-x86
+
+          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/linux-x64.zip
+          unzip obj/linux-x64.zip -d src/chromium.linux-x64
+
+          curl https://download-chromium.appspot.com/dl/Linux?type=snapshots -L -o obj/linux-x86.zip
+          unzip obj/linux-x86.zip -d src/chromium.linux-x86
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"

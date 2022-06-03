@@ -1,9 +1,9 @@
 ﻿<Project Sdk='Microsoft.Build.NoTargets/3.5.0'>
 
   <PropertyGroup>
-    <Description>Chromium native binaries for Linux x64 runtime.</Description>
+    <Description>Chromium native binaries for Windows x86 runtime.</Description>
     <TargetFramework>net6.0</TargetFramework>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <PackageId>$(MSBuildProjectName)</PackageId>
   </PropertyGroup>
 

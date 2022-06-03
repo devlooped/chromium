@@ -2,24 +2,13 @@
 
   <PropertyGroup>
     <Description>Chromium native binaries for Windows x64 runtime.</Description>
-    <PackageId>chromium.win-x64</PackageId>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Chromium</RootNamespace>
-    <EnableDefaultItems>false</EnableDefaultItems>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PackageId>$(MSBuildProjectName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NuGetizer" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- NOTE: to get these binaries for local testing, download and extract to chrome-win from 
-         https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -->
-    <None Include="chrome-win/**/*.*"
-          PackagePath="runtimes/$(RuntimeIdentifier)/native/%(RecursiveDir)%(Filename)%(Extension)"
-          CopyToOutputDirectory="PreserveNewest"
-          TargetPath="runtimes/$(RuntimeIdentifier)/native/%(RecursiveDir)%(Filename)%(Extension)" />          
   </ItemGroup>
 
 </Project>
