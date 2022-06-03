@@ -34,9 +34,9 @@ jobs:
         run: |
           mkdir obj
           curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/chrome-win.zip
-          unzip obj/chrome-win.zip -d src/chromium-win-x64
+          unzip obj/chrome-win.zip -d src/chromium.win-x64
           curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/chrome-linux.zip
-          unzip obj/chrome-linux.zip -d src/chromium-linux-x64
+          unzip obj/chrome-linux.zip -d src/chromium.linux-x64
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
