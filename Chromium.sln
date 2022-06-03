@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "chromium", "src\chromium\chromium.csproj", "{361F5BDA-1D20-4225-86DA-D23E98040882}"
 EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.osx-arm64", "src\chromium.osx-arm64\chromium.osx-arm64.msbuildproj", "{E5E18420-39C5-40D6-AA8E-91AF9832797C}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.osx-x64", "src\chromium.osx-x64\chromium.osx-x64.msbuildproj", "{A7A2A71A-CC24-4C86-B1D2-0E0F0A88D83C}"
+EndProject
 Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.win-x86", "src\chromium.win-x86\chromium.win-x86.msbuildproj", "{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}"
 EndProject
 Global
@@ -55,6 +59,14 @@ Global
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E18420-39C5-40D6-AA8E-91AF9832797C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E18420-39C5-40D6-AA8E-91AF9832797C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E18420-39C5-40D6-AA8E-91AF9832797C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E18420-39C5-40D6-AA8E-91AF9832797C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A2A71A-CC24-4C86-B1D2-0E0F0A88D83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A2A71A-CC24-4C86-B1D2-0E0F0A88D83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A2A71A-CC24-4C86-B1D2-0E0F0A88D83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A2A71A-CC24-4C86-B1D2-0E0F0A88D83C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU

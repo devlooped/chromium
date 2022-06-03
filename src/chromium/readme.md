@@ -25,3 +25,5 @@ Available chromium runtimes are:
 * [chromium.linux-x86](https://nuget.org/packages/chromium.linux-x86)
 * [chromium.win-x64](https://nuget.org/packages/chromium.win-x64)
 * [chromium.win-x86](https://nuget.org/packages/chromium.win-x86)
+* [chromium.osx-x64](https://nuget.org/packages/chromium.osx-x64)
+* [chromium.osx-arm64](https://nuget.org/packages/chromium.osx-arm64)

@@ -1,0 +1,14 @@
+﻿<Project Sdk='Microsoft.Build.NoTargets/3.5.0'>
+
+  <PropertyGroup>
+    <Description>Chromium native binaries for macOS ARM runtime.</Description>
+    <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifier>osx-arm64</RuntimeIdentifier>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGetizer" />
+  </ItemGroup>
+
+</Project>
