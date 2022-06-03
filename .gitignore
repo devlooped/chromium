@@ -1,5 +1,5 @@
-src/chromium-linux-x64/chrome-linux
-src/chromium-win-x64/chrome-win
+src/chromium.linux-x64/chrome-linux
+src/chromium.win-x64/chrome-win
 
 bin
 obj

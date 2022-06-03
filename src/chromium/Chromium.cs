@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyModel;
+using NuGet.ProjectModel;
 
 /// <summary>
 /// Provides access to the Chromium <see cref="Path"/> location, 
@@ -12,6 +13,9 @@ public static class Chromium
     {
         // Locate proper runtime binaries
         var chromeDir = default(string);
+        var chromeFile = "chrome";
+        if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            chromeFile += ".exe";
 
         foreach (var runtime in DependencyContext.Default.RuntimeGraph)
         {
@@ -21,35 +25,36 @@ public static class Chromium
                 chromeDir = candidate;
         }
 
-        if (chromeDir == null)
-        {
-            // In the installed tool scenario, we need to go up to the tool project restore root 
-            // since it migtht be a trimmed tool package to avoid going over the nuget.org limit.
-            // Just like we do in dotnet-chromium.
-            var rootDir = AppContext.BaseDirectory;
-            while (rootDir != null && !File.Exists(System.IO.Path.Combine(rootDir, "project.assets.json")))
-                rootDir = new DirectoryInfo(rootDir).Parent?.FullName;
-
-            if (rootDir != null && File.Exists(System.IO.Path.Combine(rootDir, "project.assets.json")))
-            {
-                // Search again but starting from each runtime dependency path, where the runtime matches the 
-                // current dependency grap
-                var dirs = from runtime in DependencyContext.Default.RuntimeGraph
-                           from lib in DependencyContext.Default.RuntimeLibraries
-                           where lib.NativeLibraryGroups.Any(g => g.Runtime == runtime.Runtime)
-                           let candidate = System.IO.Path.Combine(rootDir, lib.Path, "runtimes", runtime.Runtime, "native")
-                           where Directory.Exists(candidate)
-                           select candidate;
-
-                chromeDir = dirs.FirstOrDefault();
-            }
-        }
-
         if (chromeDir != null)
         {
-            Path = System.IO.Path.Combine(chromeDir, "chrome");
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                Path += ".exe";
+            Path = System.IO.Path.Combine(chromeDir, chromeFile);
+            return;
+        }
+
+        // In the installed tool scenario, we need to go up to the tool project restore root 
+        // since it migtht be a trimmed tool package to avoid going over the nuget.org limit.
+        // Just like we do in dotnet-chromium.
+        var rootDir = AppContext.BaseDirectory;
+        while (rootDir != null && !File.Exists(System.IO.Path.Combine(rootDir, "project.assets.json")))
+            rootDir = new DirectoryInfo(rootDir).Parent?.FullName;
+
+        if (rootDir != null && File.Exists(System.IO.Path.Combine(rootDir, "project.assets.json")))
+        {
+            var lockFile = new LockFileFormat().Read(System.IO.Path.Combine(rootDir, "project.assets.json"));
+
+            // Search again but starting from each runtime dependency path, where the runtime matches the 
+            // current dependency grap
+            var nativeFiles = from runtime in DependencyContext.Default.RuntimeGraph
+                              from target in lockFile.Targets
+                              from lib in target.Libraries
+                              from native in lib.RuntimeTargets
+                              where native.Runtime == runtime.Runtime &&
+                                    System.IO.Path.GetFileName(native.Path) == chromeFile
+                              let file = new FileInfo(System.IO.Path.Combine(rootDir, lib.Name, lib.Version.ToString(), native.Path))
+                              where file.Exists
+                              select file.FullName;
+
+            Path = nativeFiles.FirstOrDefault();
         }
     }
 }

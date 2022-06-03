@@ -1,4 +1,8 @@
-﻿using Microsoft.Playwright;
+﻿using System.Diagnostics;
+using Microsoft.Playwright;
+
+if (args.Any(x => x == "--debug"))
+    Debugger.Launch();
 
 if (Chromium.Path == null)
 {
@@ -11,7 +15,7 @@ Console.WriteLine($"Located compatible Chromium at {Chromium.Path}");
 using var playwright = await Playwright.CreateAsync();
 await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 {
-    Args = args.Where(x => x.StartsWith("--")),
+    Args = args.Where(x => x.StartsWith("--") && x != "--debug"),
     ExecutablePath = Chromium.Path,
     Headless = args.Contains("--headless"),
 });
@@ -22,14 +26,22 @@ var page = await browser.NewPageAsync();
 // NOTE: showcases how to interact with the browser as it's navigating
 page.FrameNavigated += async (sender, args) =>
 {
-    await page.WaitForNavigationAsync(new PageWaitForNavigationOptions
+    try
     {
-        Timeout = 0,
-        WaitUntil = WaitUntilState.NetworkIdle
-    });
+        await page.WaitForNavigationAsync(new PageWaitForNavigationOptions
+        {
+            Timeout = 0,
+            WaitUntil = WaitUntilState.NetworkIdle
+        });
 
-    // Example of how to get the page body HTML
-    Console.WriteLine(await page.InnerHTMLAsync("body"));
+        // Example of how to get the page body HTML
+        Console.WriteLine(await page.InnerHTMLAsync("body"));
+    }
+    catch (PlaywrightException)
+    {
+        // Will be thrown when the app is shutting down, so ignore
+        return;
+    }   
 };
 
 if (arg != null)
