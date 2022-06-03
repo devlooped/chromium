@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7C8C799A-D411-40CE-8072-2A58379AC76C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		.netconfig = .netconfig
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
@@ -30,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "chromium", "src\chromium\chromium.csproj", "{361F5BDA-1D20-4225-86DA-D23E98040882}"
 EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.linux-x86", "src\chromium.linux-x86\chromium.linux-x86.msbuildproj", "{4B75E368-6AC4-4FFF-8C96-F94AF2618EE5}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.win-x86", "src\chromium.win-x86\chromium.win-x86.msbuildproj", "{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +57,14 @@ Global
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{361F5BDA-1D20-4225-86DA-D23E98040882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B75E368-6AC4-4FFF-8C96-F94AF2618EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B75E368-6AC4-4FFF-8C96-F94AF2618EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B75E368-6AC4-4FFF-8C96-F94AF2618EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B75E368-6AC4-4FFF-8C96-F94AF2618EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
