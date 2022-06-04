@@ -10,7 +10,9 @@ if (Chromium.Path == null)
     return -1;
 }
 
+#if DEBUG
 Console.WriteLine($"Located compatible Chromium at {Chromium.Path}");
+#endif
 
 using var playwright = await Playwright.CreateAsync();
 await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
