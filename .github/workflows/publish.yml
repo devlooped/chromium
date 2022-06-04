@@ -42,10 +42,6 @@ jobs:
           unzip obj/linux-x64.zip -d src/chromium.linux-x64
           echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x64/readme.md
 
-          curl https://download-chromium.appspot.com/dl/Linux?type=snapshots -L -o obj/linux-x86.zip
-          unzip obj/linux-x86.zip -d src/chromium.linux-x86
-          echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x86/readme.md
-
       - name: 🙏 build
         run: dotnet build -m:1 -p:version=${GITHUB_REF#refs/*/v}
 
