@@ -1,5 +1,17 @@
 # Changelog
 
+## [v2022.6.4-beta](https://github.com/devlooped/chromium/tree/v2022.6.4-beta) (2022-06-04)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4-alpha...v2022.6.4-beta)
+
+:sparkles: Implemented enhancements:
+
+- Remove linux-x86 which hasn't been updated in years [\#4](https://github.com/devlooped/chromium/issues/4)
+
+:twisted_rightwards_arrows: Merged:
+
+- Remove linux-x86 which hasn't been updated in years [\#6](https://github.com/devlooped/chromium/pull/6) (@kzu)
+
 ## [v2022.6.4-alpha](https://github.com/devlooped/chromium/tree/v2022.6.4-alpha) (2022-06-04)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/04978d40d452bee8fc37b70ba31475a6ae6c1c67...v2022.6.4-alpha)
