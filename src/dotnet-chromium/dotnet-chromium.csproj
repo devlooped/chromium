@@ -16,12 +16,13 @@
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\chromium\chromium.csproj" PrivateAssets="all" />
   </ItemGroup>
-  
+
   <Target Name="TrimRuntimes" AfterTargets="InferToolContents">
     <ItemGroup>
       <None Remove="@(None)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
@@ -43,5 +44,5 @@
       <PackageFile Include="@(RuntimeIdentifiers -> 'chromium.%(Identity)')" Version="$(Version)" PackFolder="Dependency" />
     </ItemGroup>
   </Target>
-  
+
 </Project>

@@ -10,6 +10,7 @@
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="NuGet.ProjectModel" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" />
   </ItemGroup>
 
 </Project>

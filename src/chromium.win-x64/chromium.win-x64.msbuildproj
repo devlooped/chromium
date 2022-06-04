@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="NuGetizer" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" />
   </ItemGroup>
 
 </Project>
