@@ -50,6 +50,14 @@ else
     Console.WriteLine($"Current runtime {System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier} is not supported.");
 ```
 
+This will provide the runtime lookup of the native binaries, but will *not* provide the binaries themselves. 
+In other words, the `chromium` package is not a **metapackage**. Since NuGet does not provide a built-in 
+mechanism to conditionally reference specific packages depending on the current runtime platform or library 
+target's `RuntimeIdentifier(s)`, a metapackage is not practical since it would cause a restore of *all* 
+platforms, which only bloats download and install size unnecessarily. If you know what platforms your app 
+will run on, you can simply reference the relevant ones manually by adding package references to 
+`chromium.[RID]` as necessary.
+
 ## Sponsors
 
 [![sponsored](https://raw.githubusercontent.com/devlooped/oss/main/assets/images/sponsors.svg)](https://github.com/sponsors/devlooped) [![clarius](https://raw.githubusercontent.com/clarius/branding/main/logo/byclarius.svg)](https://github.com/clarius)[![clarius](https://raw.githubusercontent.com/clarius/branding/main/logo/logo.svg)](https://github.com/clarius)
