@@ -36,15 +36,19 @@ jobs:
           
           curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/win-x64.zip
           unzip obj/win-x64.zip -d src/chromium.win-x64
+          echo Build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Win_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.win-x64/readme.md
 
           curl https://download-chromium.appspot.com/dl/Win?type=snapshots -L -o obj/win-x86.zip
           unzip obj/win-x86.zip -d src/chromium.win-x86
+          echo Build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Win?type=snapshots | grep -oP "\d{6,}") > src/chromium.win-x86/readme.md
 
           curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/linux-x64.zip
           unzip obj/linux-x64.zip -d src/chromium.linux-x64
+          echo Build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x64/readme.md
 
           curl https://download-chromium.appspot.com/dl/Linux?type=snapshots -L -o obj/linux-x86.zip
           unzip obj/linux-x86.zip -d src/chromium.linux-x86
+          echo Build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x86/readme.md
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"

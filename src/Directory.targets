@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <None Include="readme.md" Condition="Exists('readme.md')" Pack="true" />
     <!-- NOTE: to get these binaries for local testing, download and extract to 'native' 
          folder from https://download-chromium.appspot.com/ for the relevant platform 
          Also, we need to use the specific relative folder path (as opposed to 'chrome-*') 
