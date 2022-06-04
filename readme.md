@@ -1,9 +1,15 @@
-# dotnet chromium
+![Icon](https://raw.githubusercontent.com/devlooped/chromium/main/assets/img/icon.png) dotnet-chromium
+============
+
+[![Version](https://img.shields.io/nuget/v/dotnet-chromium.svg?color=royalblue)](https://www.nuget.org/packages/dotnet-chromium) 
+[![Downloads](https://img.shields.io/nuget/dt/dotnet-chromium.svg?color=green)](https://www.nuget.org/packages/dotnet-chromium) 
+[![License](https://img.shields.io/github/license/devlooped/chromium.svg?color=blue)](https://github.com/devlooped/chromium/blob/main/license.txt) 
+[![Build](https://github.com/devlooped/chromium/workflows/build/badge.svg?branch=main)](https://github.com/devlooped/chromium/actions)
 
 Chromium for .NET 6.
 
 This project allows running a portable embedded version of Chromium from 
-either a .NET tool or a regular .NET application without having to install 
+either a .NET CLI tool or a regular .NET application without having to install 
 it.
 
 This can be helpful for automating a browser as part of your regular app 
