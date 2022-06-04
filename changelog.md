@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2022.6.4](https://github.com/devlooped/chromium/tree/v2022.6.4) (2022-06-04)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4-beta...v2022.6.4)
+
 ## [v2022.6.4-beta](https://github.com/devlooped/chromium/tree/v2022.6.4-beta) (2022-06-04)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4-alpha...v2022.6.4-beta)
