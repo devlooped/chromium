@@ -49,7 +49,6 @@ if (Chromium.Path != null)
 else
     Console.WriteLine($"Current runtime {System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier} is not supported.");
 ```
-```
 
 ## Sponsors
 
