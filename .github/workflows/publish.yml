@@ -28,21 +28,19 @@ jobs:
 
       - name: ⏬ download
         run: |
-          mkdir obj && pushd obj
-          mkdir win-x64; mkdir win-x86; mkdir linux-x64; mkdir linux-x86; mkdir osx-x64; mkdir osx-arm64
-          popd;
+          mkdir obj
           
-          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/win-x64/native.zip
-          unzip obj/win-x64/native.zip -d src/chromium.win-x64
+          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/win-x64.zip
+          unzip obj/win-x64.zip -d src/chromium.win-x64
 
-          curl https://download-chromium.appspot.com/dl/Win?type=snapshots -L -o obj/win-x86/native.zip
-          unzip obj/win-x86/native.zip -d src/chromium.win-x86
+          curl https://download-chromium.appspot.com/dl/Win?type=snapshots -L -o obj/win-x86.zip
+          unzip obj/win-x86.zip -d src/chromium.win-x86
 
-          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/linux-x64/native.zip
-          unzip obj/linux-x64/native.zip -d src/chromium.linux-x64
+          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/linux-x64.zip
+          unzip obj/linux-x64.zip -d src/chromium.linux-x64
 
-          curl https://download-chromium.appspot.com/dl/Linux?type=snapshots -L -o obj/linux-x86/native.zip
-          unzip obj/linux-x86/native.zip -d src/chromium.linux-x86
+          curl https://download-chromium.appspot.com/dl/Linux?type=snapshots -L -o obj/linux-x86.zip
+          unzip obj/linux-x86.zip -d src/chromium.linux-x86
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:version=${GITHUB_REF#refs/*/v}
