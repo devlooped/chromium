@@ -1,15 +1,12 @@
-﻿<Project Sdk='Microsoft.Build.NoTargets/3.5.0'>
-
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.5.0">
   <PropertyGroup>
     <Description>Chromium native binaries for Windows x86 runtime.</Description>
     <TargetFramework>net6.0</TargetFramework>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <PackageId>$(MSBuildProjectName)</PackageId>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="NuGetizer" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
+    <PackageReference Include="NuGetizer" PrivateAssets="all" />
   </ItemGroup>
-
 </Project>
