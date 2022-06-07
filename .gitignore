@@ -1,5 +1,3 @@
-src/*/chrome-*/**
-
 bin
 obj
 artifacts
@@ -15,6 +13,7 @@ TestResults
 *.nupkg
 *.metaproj
 *.tmp
+*.log
 *.cache
 *.binlog
 *.zip
