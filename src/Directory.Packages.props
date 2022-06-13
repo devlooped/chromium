@@ -1,7 +1,7 @@
 <Project>
 
   <ItemGroup>
-    <PackageVersion Include="NuGetizer" Version="0.8.0-beta" />
+    <PackageVersion Include="NuGetizer" Version="0.8.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Playwright" Version="1.22.0" />
     <PackageVersion Include="NuGet.ProjectModel" Version="6.2.0" />
