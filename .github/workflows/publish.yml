@@ -21,27 +21,6 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: ⚙ dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: ⏬ download
-        run: |
-          mkdir obj
-          
-          curl https://download-chromium.appspot.com/dl/Win_x64?type=snapshots -L -o obj/win-x64.zip
-          unzip obj/win-x64.zip -d src/chromium.win-x64
-          echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Win_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.win-x64/readme.md
-
-          curl https://download-chromium.appspot.com/dl/Win?type=snapshots -L -o obj/win-x86.zip
-          unzip obj/win-x86.zip -d src/chromium.win-x86
-          echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Win?type=snapshots | grep -oP "\d{6,}") > src/chromium.win-x86/readme.md
-
-          curl https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -L -o obj/linux-x64.zip
-          unzip obj/linux-x64.zip -d src/chromium.linux-x64
-          echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x64/readme.md
-
       - name: 🙏 build
         run: dotnet build -m:1 -p:version=${GITHUB_REF#refs/*/v}
 
@@ -52,4 +31,4 @@ jobs:
         run: dotnet pack -m:1 -p:version=${GITHUB_REF#refs/*/v}
 
       - name: 🚀 nuget
-        run: dotnet nuget push ./bin/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./bin/**/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate
