@@ -62,10 +62,11 @@ mechanism to conditionally reference specific packages depending on the current 
 target's `RuntimeIdentifier(s)`, a metapackage is not practical since it would cause a restore of *all* 
 platforms, which only bloats download and install size unnecessarily. If you know what platforms your app 
 will run on, you can simply reference the relevant ones manually by adding package references to 
-`chromium.[RID]` as necessary.
+`chromium.[RID]` as necessary:
 
-## Sponsors
+[![Linux-x64](https://img.shields.io/nuget/v/chromium.linux-x64.svg?label=chromium-linux-x64&color=royalblue)](https://www.nuget.org/packages/chromium.linux-x64) 
+[![Win-x64](https://img.shields.io/nuget/v/chromium.win-x64.svg?label=chromium-win-x64&color=royalblue)](https://www.nuget.org/packages/chromium.win-x64) 
+[![Win-x86](https://img.shields.io/nuget/v/chromium.win-x86.svg?label=chromium-win-x86&color=royalblue)](https://www.nuget.org/packages/chromium.win-x86) 
 
-[![sponsored](https://raw.githubusercontent.com/devlooped/oss/main/assets/images/sponsors.svg)](https://github.com/sponsors/devlooped) [![clarius](https://raw.githubusercontent.com/clarius/branding/main/logo/byclarius.svg)](https://github.com/clarius)[![clarius](https://raw.githubusercontent.com/clarius/branding/main/logo/logo.svg)](https://github.com/clarius)
-
-*[get mentioned here too](https://github.com/sponsors/devlooped)!*
+<!-- #sponsors -->
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
