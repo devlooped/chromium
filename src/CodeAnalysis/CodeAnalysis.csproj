@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Chromium.CodeAnalysis</AssemblyName>
+    <PackFolder>analyzers/dotnet</PackFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGetizer" />
+    <!-- Roslyn min version is 4.0.1 -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Pack="false" />
+    <PackageReference Include="Devlooped.SponsorLink" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(PkgDevlooped_SponsorLink)\buildTransitive\Devlooped.SponsorLink.targets"
+          PackFolder="buildTransitive"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="chromium.targets" PackFolder="buildTransitive" />
+  </ItemGroup>
+
+</Project>
