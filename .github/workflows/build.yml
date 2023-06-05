@@ -25,11 +25,6 @@ jobs:
       - name: 🤘 checkout
         uses: actions/checkout@v2
 
-      - name: ⚙ dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-
       - name: ⏬ download
         run: |
           mkdir obj
