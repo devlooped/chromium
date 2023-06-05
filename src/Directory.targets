@@ -1,10 +1,5 @@
 <Project>
 
-  <PropertyGroup>
-    <RestoreSources Condition="Exists('$(MSBuildThisFileDirectory)..\bin')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\bin'));$(RestoreSources)</RestoreSources>
-    <RestoreSources Condition="Exists('$(MSBuildThisFileDirectory)..\..\nugetizer\bin')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\nugetizer\bin'));$(RestoreSources)</RestoreSources>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
     <EnableDefaultItems>false</EnableDefaultItems>
     <RuntimeOs>$(RuntimeIdentifier.Substring(0, $(RuntimeIdentifier.IndexOf('-'))))</RuntimeOs>
