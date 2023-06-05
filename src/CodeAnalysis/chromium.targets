@@ -1,0 +1,12 @@
+<Project>
+
+  <ItemGroup Label="SponsorLink">
+    <!-- Let SponsorLink know your package ID for transitive checks -->
+    <SponsorablePackageId Include="chromium" />
+  </ItemGroup>
+
+  <!-- Ensure SponsorLink targets are always imported -->
+  <Import Project="Devlooped.SponsorLink.targets"
+          Condition="$(SponsorLinkImported) != true"/>
+
+</Project>
