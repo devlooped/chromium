@@ -12,16 +12,16 @@
     <!-- Roslyn min version is 4.0.1 -->
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Pack="false" />
     <PackageReference Include="Devlooped.SponsorLink" />
+    <PackageReference Include="ThisAssembly.Project" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(PkgDevlooped_SponsorLink)\buildTransitive\Devlooped.SponsorLink.targets"
-          PackFolder="buildTransitive"
-          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(PkgDevlooped_SponsorLink)\buildTransitive\Devlooped.SponsorLink.targets" PackFolder="buildTransitive" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="chromium.targets" PackFolder="buildTransitive" />
+    <ProjectProperty Include="RepositoryBranch" />
   </ItemGroup>
 
 </Project>

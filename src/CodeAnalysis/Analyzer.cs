@@ -6,6 +6,9 @@ namespace Devlooped.Chromium;
 [DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
 class SponsorLinker : SponsorLink
 {
-    public SponsorLinker() : base("devlooped", "chromium")
+    static readonly SponsorLinkSettings settings = SponsorLinkSettings.Create("devlooped", "chromium", 
+        quietDays: ThisAssembly.Project.RepositoryBranch == "main" ? 0 : null);
+
+    public SponsorLinker() : base(settings)
     { }
 }
