@@ -4,6 +4,7 @@
     <AssemblyName>Chromium.CodeAnalysis</AssemblyName>
     <PackFolder>analyzers/dotnet</PackFolder>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
