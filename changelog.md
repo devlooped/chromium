@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2023.10.9](https://github.com/devlooped/chromium/tree/v2023.10.9) (2023-10-09)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4...v2023.10.9)
+
+:sparkles: Implemented enhancements:
+
+- Add SponsorLink to support the project [\#45](https://github.com/devlooped/chromium/pull/45) (@kzu)
+
 ## [v2022.6.4](https://github.com/devlooped/chromium/tree/v2022.6.4) (2022-06-04)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4-beta...v2022.6.4)
