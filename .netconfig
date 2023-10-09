@@ -1,6 +1,5 @@
 [file]
 	url = https://github.com/devlooped/oss
-	url = https://github.com/devlooped/.github
 [file ".netconfig"]
 	url = https://github.com/devlooped/oss/blob/main/.netconfig
 	skip
@@ -9,9 +8,6 @@
 	skip
 [file "src/icon.png"]
 	url = https://github.com/devlooped/oss/blob/main/src/icon.png
-	skip
-[file ".github/ISSUE_TEMPLATE/config.yml"]
-	url = https://github.com/devlooped/oss/blob/main/.github/ISSUE_TEMPLATE/config.yml
 	skip
 [file ".github/workflows/release-artifacts.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/release-artifacts.yml
@@ -128,33 +124,8 @@
 	sha = 055a8b7c94b74ae139cce919d60b83976d2a9942
 	etag = ddb17acb5872e9e69a76f9dec0ca590f25382caa2ccf750df058dcabb674db2b
 	weak
-[file ".github/CODE_OF_CONDUCT.md"]
-	url = https://github.com/devlooped/.github/blob/main/.github/CODE_OF_CONDUCT.md
-	sha = c97cdeb04769df3f397d9e70b345d4549628c388
-	etag = 4857c01bb695f09bf6912d778951c3065d9dd565e5de3d0827f40432d0e4c613
-	weak
-[file ".github/CONTRIBUTING.md"]
-	url = https://github.com/devlooped/.github/blob/main/.github/CONTRIBUTING.md
-	sha = 1dc5908c7711c17c1fe06abd191f2c09f37ac56a
-	etag = b2bc4ee0e910ea60c3daa4e7d391e6260b5644d3e3c2a19145525c8db3f454fd
-	weak
-[file ".github/SECURITY.md"]
-	url = https://github.com/devlooped/.github/blob/main/.github/SECURITY.md
-	sha = c97cdeb04769df3f397d9e70b345d4549628c388
-	etag = fc8101fd914820db3e6b42d608dc46aefbc60c830ac721ed3917daead3727dbd
-	weak
-[file ".github/SUPPORT.md"]
-	url = https://github.com/devlooped/.github/blob/main/.github/SUPPORT.md
-	sha = c97cdeb04769df3f397d9e70b345d4549628c388
-	etag = 2d47e2fc4fdfa3515203d452674566e3df507461f9938f451a06d79deb687d24
-	weak
 [file ".github/workflows/sponsor.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/sponsor.yml
 	sha = 8990ebb36199046e0b8098bad9e46dcef739c56e
 	etag = e1dc114d2e8b57d50649989d32dbf0c9080ec77da3738a4cc79e9256d6ca5d3e
-	weak
-[file ".github/ISSUE_TEMPLATE/bug.md"]
-	url = https://github.com/devlooped/.github/blob/main/.github/ISSUE_TEMPLATE/bug.md
-	sha = 50faf1212e849f3ebd675be93a6c2d9917faa6d0
-	etag = 6d3c88228649aa36431b5a8017baa46cd5d1584542fbc87e0d907b17dd882899
 	weak
