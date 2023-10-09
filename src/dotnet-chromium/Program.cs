@@ -30,10 +30,9 @@ page.FrameNavigated += async (sender, args) =>
 {
     try
     {
-        await page.WaitForNavigationAsync(new PageWaitForNavigationOptions
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions
         {
             Timeout = 0,
-            WaitUntil = WaitUntilState.NetworkIdle
         });
 
         // Example of how to get the page body HTML
