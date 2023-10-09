@@ -68,6 +68,16 @@ will run on, you can simply reference the relevant ones manually by adding packa
 [![Win-x64](https://img.shields.io/nuget/v/chromium.win-x64.svg?label=chromium-win-x64&color=royalblue)](https://www.nuget.org/packages/chromium.win-x64) 
 [![Win-x86](https://img.shields.io/nuget/v/chromium.win-x86.svg?label=chromium-win-x86&color=royalblue)](https://www.nuget.org/packages/chromium.win-x86) 
 
+## Releasing
+
+Create a new release versioned as `v[YYYY].[M].[D]` and the bundled binaries will be the 
+snapshots of the day the release build runs, fetched from:
+
+* Win-x64: https://download-chromium.appspot.com/dl/Win_x64?type=snapshots
+* Win-x86: https://download-chromium.appspot.com/dl/Win?type=snapshots
+* Linux-x64: https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots
+
+
 <!-- #sponsors -->
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
