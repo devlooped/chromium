@@ -13,8 +13,8 @@
     <PackageReference Include="NuGet.ProjectModel" />
   </ItemGroup>
 
-  <ItemGroup>
+<!--  <ItemGroup>
     <ProjectReference Include="..\CodeAnalysis\CodeAnalysis.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>
