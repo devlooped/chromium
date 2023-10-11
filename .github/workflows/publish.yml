@@ -35,7 +35,7 @@ jobs:
           echo Chromium build https://crrev.com/$(curl --silent https://download-chromium.appspot.com/rev/Linux_x64?type=snapshots | grep -oP "\d{6,}") > src/chromium.linux-x64/readme.md
 
       - name: 🙏 build
-        run: dotnet build -p:version=${GITHUB_REF#refs/*/v}
+        run: dotnet build -bl -p:version=${GITHUB_REF#refs/*/v}
 
       - name: 📦 binlog
         uses: actions/upload-artifact@v3
@@ -48,7 +48,7 @@ jobs:
         uses: ./.github/workflows/test
 
       - name: 📦 pack
-        run: dotnet pack -p:version=${GITHUB_REF#refs/*/v}
+        run: dotnet pack -bl -p:version=${GITHUB_REF#refs/*/v}
 
       - name: 📦 binlog
         uses: actions/upload-artifact@v3
