@@ -8,6 +8,10 @@
 
 - Add SponsorLink to support the project [\#45](https://github.com/devlooped/chromium/pull/45) (@kzu)
 
+:twisted_rightwards_arrows: Merged:
+
+- Update readme.md [\#70](https://github.com/devlooped/chromium/pull/70) (@kzu)
+
 ## [v2022.6.4](https://github.com/devlooped/chromium/tree/v2022.6.4) (2022-06-04)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4-beta...v2022.6.4)
