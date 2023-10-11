@@ -1,8 +1,8 @@
 # Changelog
 
-## [v2022.10.11](https://github.com/devlooped/chromium/tree/v2022.10.11) (2023-10-11)
+## [v2023.10.11](https://github.com/devlooped/chromium/tree/v2023.10.11) (2023-10-11)
 
-[Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4...v2022.10.11)
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2022.6.4...v2023.10.11)
 
 :sparkles: Implemented enhancements:
 
