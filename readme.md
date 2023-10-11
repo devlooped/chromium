@@ -64,9 +64,9 @@ platforms, which only bloats download and install size unnecessarily. If you kno
 will run on, you can simply reference the relevant ones manually by adding package references to 
 `chromium.[RID]` as necessary:
 
-[![Linux-x64](https://img.shields.io/nuget/v/chromium.linux-x64.svg?label=chromium-linux-x64&color=royalblue)](https://www.nuget.org/packages/chromium.linux-x64) 
-[![Win-x64](https://img.shields.io/nuget/v/chromium.win-x64.svg?label=chromium-win-x64&color=royalblue)](https://www.nuget.org/packages/chromium.win-x64) 
-[![Win-x86](https://img.shields.io/nuget/v/chromium.win-x86.svg?label=chromium-win-x86&color=royalblue)](https://www.nuget.org/packages/chromium.win-x86) 
+[![Linux-x64](https://img.shields.io/nuget/v/chromium.linux-x64.svg?label=chromium.linux-x64&color=royalblue)](https://www.nuget.org/packages/chromium.linux-x64) 
+[![Win-x64](https://img.shields.io/nuget/v/chromium.win-x64.svg?label=chromium.win-x64&color=royalblue)](https://www.nuget.org/packages/chromium.win-x64) 
+[![Win-x86](https://img.shields.io/nuget/v/chromium.win-x86.svg?label=chromium.win-x86&color=royalblue)](https://www.nuget.org/packages/chromium.win-x86) 
 
 ## Releasing
 
