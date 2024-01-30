@@ -17,6 +17,8 @@ on:
 
 env:
   DOTNET_NOLOGO: true
+  PackOnBuild: true
+  GeneratePackageOnBuild: true
 
 jobs:
   build:
@@ -43,9 +45,6 @@ jobs:
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
-
-      - name: 📦 pack
-        run: dotnet pack -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
 
       - name: 🚀 sleet
         env:
