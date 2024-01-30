@@ -27,13 +27,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build.yml = .github\workflows\build.yml
 		.github\workflows\publish.yml = .github\workflows\publish.yml
+		.github\workflows\scheduled.yml = .github\workflows\scheduled.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "chromium", "src\chromium\chromium.csproj", "{361F5BDA-1D20-4225-86DA-D23E98040882}"
 EndProject
 Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "chromium.win-x86", "src\chromium.win-x86\chromium.win-x86.msbuildproj", "{61C09B9D-468B-40F6-B9C1-E383F21B8CF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeAnalysis", "src\CodeAnalysis\CodeAnalysis.csproj", "{1E3B76EC-9828-4381-9FD0-672C2AAF77F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis", "src\CodeAnalysis\CodeAnalysis.csproj", "{1E3B76EC-9828-4381-9FD0-672C2AAF77F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
