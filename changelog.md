@@ -1,5 +1,17 @@
 # Changelog
 
+## [v2024.01.30-beta](https://github.com/devlooped/chromium/tree/v2024.01.30-beta) (2024-01-30)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2024.01.30...v2024.01.30-beta)
+
+:sparkles: Implemented enhancements:
+
+- Bump to latest chromium supported by latest Playwright [\#14](https://github.com/devlooped/chromium/issues/14)
+
+:twisted_rightwards_arrows: Merged:
+
+- Bump dependencies [\#79](https://github.com/devlooped/chromium/pull/79) (@kzu)
+
 ## [v2024.01.30](https://github.com/devlooped/chromium/tree/v2024.01.30) (2023-10-12)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2023.10.11...v2024.01.30)
