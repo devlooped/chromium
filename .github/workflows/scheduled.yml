@@ -1,0 +1,17 @@
+﻿name: scheduled
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1/15 * *"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v2
+
+      - name: 🚀 release
+        run: |
+          gh auth status
+          gh release create v$(date "+%Y.%m.%d") --generate-notes
