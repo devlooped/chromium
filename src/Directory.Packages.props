@@ -3,7 +3,7 @@
     <PackageVersion Include="NuGetizer" Version="1.2.1" />
     <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Playwright" Version="1.41.2" />
-    <PackageVersion Include="NuGet.ProjectModel" Version="6.8.0" />
+    <PackageVersion Include="NuGet.ProjectModel" Version="6.9.1" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
     <PackageVersion Include="Devlooped.SponsorLink" Version="1.1.0" />
