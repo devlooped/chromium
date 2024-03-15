@@ -6,13 +6,13 @@
 [![License](https://img.shields.io/github/license/devlooped/chromium.svg?color=blue)](https://github.com/devlooped/chromium/blob/main/license.txt) 
 [![Build](https://github.com/devlooped/chromium/workflows/build/badge.svg?branch=main)](https://github.com/devlooped/chromium/actions)
 
-Chromium for .NET 6.
+Chromium for .NET 6+.
 
 This project allows running a portable embedded version of Chromium from 
 either a .NET CLI tool or a regular .NET application without having to install 
 it.
 
-This can be helpful for automating a browser as part of your regular app 
+This can help automate a browser as part of your regular app 
 normal behavior, such as using [Microsoft.Playwright](https://playwright.dev/dotnet/).
 
 ## Usage
@@ -35,11 +35,11 @@ Run with:
 chromium [url] [switches]
 ```
 
-The `url` is optional, and causes the browser to immediately navigate 
+The `url` is optional, and causes the browser to navigate immediately 
 to that URL on open. 
 
 The `switches` are optional, and are passed directly to Chromium. For 
-example, to run the browser headless, you'd pass `--headless`. See the 
+example, you'd pass `-headless` to run the browser headless. See the 
 [list of chromium switches](https://peter.sh/experiments/chromium-command-line-switches/) 
 for more information.
 
@@ -61,7 +61,7 @@ In other words, the `chromium` package is not a **metapackage**. Since NuGet doe
 mechanism to conditionally reference specific packages depending on the current runtime platform or library 
 target's `RuntimeIdentifier(s)`, a metapackage is not practical since it would cause a restore of *all* 
 platforms, which only bloats download and install size unnecessarily. If you know what platforms your app 
-will run on, you can simply reference the relevant ones manually by adding package references to 
+will run on, you can reference the relevant ones manually by adding package references to 
 `chromium.[RID]` as necessary:
 
 [![Linux-x64](https://img.shields.io/nuget/v/chromium.linux-x64.svg?label=chromium.linux-x64&color=royalblue)](https://www.nuget.org/packages/chromium.linux-x64) 
