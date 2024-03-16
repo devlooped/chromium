@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2024.03.16](https://github.com/devlooped/chromium/tree/v2024.03.16) (2024-03-15)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2024.03.01...v2024.03.16)
+
+:twisted_rightwards_arrows: Merged:
+
+- Update readme.md [\#89](https://github.com/devlooped/chromium/pull/89) (@kzu)
+
 ## [v2024.03.01](https://github.com/devlooped/chromium/tree/v2024.03.01) (2024-02-16)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2024.02.16...v2024.03.01)
