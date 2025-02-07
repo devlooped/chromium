@@ -73,13 +73,17 @@ will run on, you can reference the relevant ones manually by adding package refe
 
 ## Releasing
 
-Create a new release versioned as `v[YYYY].[M].[D]` and the bundled binaries will be the 
-snapshots of the day the release build runs, fetched from:
+We run a [scheduled workflow](https://github.com/devlooped/chromium/actions/workflows/scheduled.yml) every other week 
+which creates a new release versioned as `v[YYYY].[M].[D]`, which bundles the snapshots of that day.
+
+It's also possible to create a new release on demand, versioned as `v[YYYY].[M].[D]` and the bundled binaries will be the 
+snapshots of the day the release build runs.
+
+We fetch binaries from:
 
 * Win-x64: https://download-chromium.appspot.com/dl/Win_x64?type=snapshots
 * Win-x86: https://download-chromium.appspot.com/dl/Win?type=snapshots
 * Linux-x64: https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots
-
 
 <!-- #sponsors -->
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
