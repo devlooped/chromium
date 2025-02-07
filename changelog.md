@@ -4,6 +4,11 @@
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.01...v2025.02.07)
 
+:sparkles: Implemented enhancements:
+
+- Don't pack interactive\_ui\_tests.exe in the windows runtime [\#95](https://github.com/devlooped/chromium/issues/95)
+- Delete unnecessary interactive\_ui\_tests.exe after unzip [\#96](https://github.com/devlooped/chromium/pull/96) (@kzu)
+
 ## [v2025.02.01](https://github.com/devlooped/chromium/tree/v2025.02.01) (2025-01-31)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.01.31...v2025.02.01)
