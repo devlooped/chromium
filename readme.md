@@ -45,6 +45,9 @@ for more information.
 
 ### nuget package library reference
 
+[![Version](https://img.shields.io/nuget/v/chromium.svg?color=royalblue)](https://www.nuget.org/packages/chromium) 
+[![Downloads](https://img.shields.io/nuget/dt/chromium.svg?color=green)](https://www.nuget.org/packages/chromium) 
+
 ```
 Install-Package chromium
 ```
