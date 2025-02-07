@@ -6,10 +6,10 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 🤘 checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 🚀 release
         shell: pwsh
@@ -17,6 +17,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           dotnet tool update -g dotnet-gcm
+          git config --local credential.credentialStore plaintext
           dotnet gcm store --protocol=https --host=github.com --username=$env:GITHUB_ACTOR --password=$env:GH_TOKEN
           gh auth status
           gh release create v$(date "+%Y.%m.%d") --generate-notes
