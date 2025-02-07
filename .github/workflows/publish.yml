@@ -40,7 +40,7 @@ jobs:
         run: dotnet build -bl -p:version=${GITHUB_REF#refs/*/v}
 
       - name: 📦 binlog
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: binlog-build-${{ github.run_number }}
@@ -50,7 +50,7 @@ jobs:
         uses: ./.github/workflows/test
 
       - name: 📦 binlog
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: binlog-pack-${{ github.run_number }}
