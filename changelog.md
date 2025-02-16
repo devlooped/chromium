@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2025.02.16](https://github.com/devlooped/chromium/tree/v2025.02.16) (2025-02-08)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.07...v2025.02.16)
+
+:sparkles: Implemented enhancements:
+
+- Delete all locales except for en-US [\#97](https://github.com/devlooped/chromium/issues/97)
+- Cleanup non en-US locales after unpack [\#98](https://github.com/devlooped/chromium/pull/98) (@kzu)
+
 ## [v2025.02.07](https://github.com/devlooped/chromium/tree/v2025.02.07) (2025-02-07)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.01...v2025.02.07)
