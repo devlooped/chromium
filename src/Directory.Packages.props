@@ -1,4 +1,17 @@
 <Project>
+
+  <PropertyGroup>
+    <NativeVersion>2025.2.16</NativeVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(CI)">
+    <NoWarn>$(NoWarn);NU1507</NoWarn>
+    <RestoreSources>$(PackageOutputPath);https://api.nuget.org/v3/index.json</RestoreSources>
+
+    <NativeVersion Condition="'$(PackageVersion)' != ''">$(PackageVersion)</NativeVersion>
+    <NativeVersion Condition="'$(PackageVersion)' == ''">$(Version)</NativeVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageVersion Include="NuGetizer" Version="1.2.4" />
     <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
@@ -8,5 +21,9 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
     <PackageVersion Include="Devlooped.SponsorLink" Version="1.1.0" />
     <PackageVersion Include="ThisAssembly.Project" Version="2.0.12" />
+    <PackageVersion Include="chromium.linux-x64" Version="$(NativeVersion)" />
+    <PackageVersion Include="chromium.win-x64"  Version="$(NativeVersion)" />
+    <PackageVersion Include="chromium.win-x86" Version="$(NativeVersion)" />
   </ItemGroup>
+
 </Project>

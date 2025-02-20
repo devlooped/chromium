@@ -17,5 +17,5 @@
           CopyToOutputDirectory="PreserveNewest"
           TargetPath="runtimes/$(RuntimeIdentifier)/native/%(RecursiveDir)%(Filename)%(Extension)" />          
   </ItemGroup>
-  
+
 </Project>
