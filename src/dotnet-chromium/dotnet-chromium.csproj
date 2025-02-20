@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>dotnet-chromium</PackageId>
     <Description>Allows running a portable version of Chromium via the command line on Windows and Linux.</Description>
-    <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
     <ToolCommandName>chromium</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <!-- See: https://github.com/dotnet/msbuild/pull/5499 -->
@@ -19,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\chromium.linux-x64\chromium.linux-x64.msbuildproj" />
+    <ProjectReference Include="..\chromium.win-x64\chromium.win-x64.msbuildproj" />
+    <ProjectReference Include="..\chromium.win-x86\chromium.win-x86.msbuildproj" />
     <ProjectReference Include="..\chromium\chromium.csproj" PrivateAssets="all" />
   </ItemGroup>
 
@@ -31,16 +33,9 @@
   <Target Name="IncludePlayright" BeforeTargets="InferToolContents" DependsOnTargets="CopyPlaywrightFilesToOutput">
     <ItemGroup>
       <Content Update="@(_PlaywrightCopyItems)" PackFolder="tools" Pack="true" />
-      <PlaywrightContent Include="@(Content -> HasMetadata('PlaywrightFolder'))" />
-      <PlaywrightContent Include="@(Content -> WithMetadataValue('Link', 'playwright.ps1'))" />
+      <PlaywrightContent Include="@(Content -&gt; HasMetadata('PlaywrightFolder'))" />
+      <PlaywrightContent Include="@(Content -&gt; WithMetadataValue('Link', 'playwright.ps1'))" />
       <FileWrites Include="@(PlaywrightContent -> '$(OutputPath)%(Link)')" />
-    </ItemGroup>
-  </Target>
-
-  <Target Name="AddRuntimeDependencies" BeforeTargets="GetPackageContents">
-    <ItemGroup>
-      <RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
-      <PackageFile Include="@(RuntimeIdentifiers -> 'chromium.%(Identity)')" Version="$(Version)" PackFolder="Dependency" />
     </ItemGroup>
   </Target>
 
