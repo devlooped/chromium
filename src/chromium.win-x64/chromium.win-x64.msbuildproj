@@ -2,13 +2,12 @@
 
   <PropertyGroup>
     <Description>Chromium native binaries for Windows x64 runtime.</Description>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PackageId>$(MSBuildProjectName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
   </ItemGroup>
 

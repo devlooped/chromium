@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <PackageId>dotnet-chromium</PackageId>
     <Description>Allows running a portable version of Chromium via the command line on Windows and Linux.</Description>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
   </ItemGroup>
