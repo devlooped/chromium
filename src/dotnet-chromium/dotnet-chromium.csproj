@@ -42,7 +42,7 @@
   <Target Name="AfterResolveAssemblyReferences" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <ReferencePath Remove="@(ReferencePath -> WithMetadataValue('Extension', '.nupkg'))" />
-      <ReferenceDependencyPaths Remove="@(ReferenceDependencyPaths -> WithMetadataValue('Extension', '.nupkg'))" />
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths -> WithMetadataValue('Extension', '.nupkg'))" />
     </ItemGroup>
   </Target>
 
