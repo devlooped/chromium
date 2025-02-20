@@ -4,13 +4,17 @@
 name: build
 on: 
   workflow_dispatch:
+    inputs:
+      configuration:
+        type: choice
+        description: Configuration
+        options: 
+        - Release
+        - Debug
   push:
-    branches: [ main, dev, 'feature/*', 'rel/*' ]
+    branches: [ main, dev, 'dev/*', 'feature/*', 'rel/*' ]
     paths-ignore:
       - changelog.md
-      - code-of-conduct.md
-      - security.md
-      - support.md
       - readme.md
   pull_request:
     types: [opened, synchronize, reopened]
@@ -19,13 +23,23 @@ env:
   DOTNET_NOLOGO: true
   PackOnBuild: true
   GeneratePackageOnBuild: true
+  VersionPrefix: 42.42.${{ github.run_number }}
+  VersionLabel: ${{ github.ref }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  MSBUILDTERMINALLOGGER: auto
+  Configuration: ${{ github.event.inputs.configuration || 'Release' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: 🤘 checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: ⚙️ dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
       - name: ⏬ download
         run: |
@@ -48,12 +62,19 @@ jobs:
           rm ./src/*/chrome-win/interactive_ui_tests.exe
 
       - name: 🙏 build
-        run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
+        run: dotnet build -m:1
+
+      - name: 🚀 nuget
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        if: ${{ env.NUGET_API_KEY != '' && github.event.action != 'prereleased' }}
+        working-directory: bin
+        run: dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
       - name: 🚀 sleet
         env:
           SLEET_CONNECTION: ${{ secrets.SLEET_CONNECTION }}
         if: env.SLEET_CONNECTION != ''
         run: |
-          dotnet tool install -g --version 4.0.18 sleet 
+          dotnet tool update sleet -g --allow-downgrade --version $(curl -s --compressed ${{ vars.SLEET_FEED_URL }} | jq '.["sleet:version"]' -r)        
           sleet push bin --config none -f --verbose -p "SLEET_FEED_CONTAINER=nuget" -p "SLEET_FEED_CONNECTIONSTRING=${{ secrets.SLEET_CONNECTION }}" -p "SLEET_FEED_TYPE=azure" || echo "No packages found"

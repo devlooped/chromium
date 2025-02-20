@@ -5,20 +5,23 @@
 name: publish
 on:
   release:
-    types: [released]
+    types: [prereleased, released]
 
 env:
   DOTNET_NOLOGO: true
   Configuration: Release
   PackOnBuild: true
   GeneratePackageOnBuild: true
+  VersionLabel: ${{ github.ref }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  MSBUILDTERMINALLOGGER: auto
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: 🤘 checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: ⏬ download
         run: |
