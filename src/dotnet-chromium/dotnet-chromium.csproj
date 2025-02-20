@@ -15,18 +15,22 @@
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
+    <PackageReference Include="chromium.linux-x64" />
+    <PackageReference Include="chromium.win-x64" />
+    <PackageReference Include="chromium.win-x86" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\chromium.linux-x64\chromium.linux-x64.msbuildproj" />
-    <ProjectReference Include="..\chromium.win-x64\chromium.win-x64.msbuildproj" />
-    <ProjectReference Include="..\chromium.win-x86\chromium.win-x86.msbuildproj" />
     <ProjectReference Include="..\chromium\chromium.csproj" PrivateAssets="all" />
   </ItemGroup>
 
-  <Target Name="TrimRuntimes" AfterTargets="InferToolContents">
+  <Target Name="TrimRuntimes" AfterTargets="InferToolContents" DependsOnTargets="_GenerateRestoreGraph">
     <ItemGroup>
       <None Remove="@(None)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
+      <PackageFile Include="@(PackageReference)" 
+                   Version="$(NativeVersion)" 
+                   PackFolder="Dependency"
+                   Condition="$([System.String]::new('%(PackageReference.Identity)').StartsWith('chromium.')) "/>
     </ItemGroup>
   </Target>
 
@@ -36,13 +40,6 @@
       <PlaywrightContent Include="@(Content -&gt; HasMetadata('PlaywrightFolder'))" />
       <PlaywrightContent Include="@(Content -&gt; WithMetadataValue('Link', 'playwright.ps1'))" />
       <FileWrites Include="@(PlaywrightContent -> '$(OutputPath)%(Link)')" />
-    </ItemGroup>
-  </Target>
-
-  <Target Name="AfterResolveAssemblyReferences" AfterTargets="ResolveAssemblyReferences">
-    <ItemGroup>
-      <ReferencePath Remove="@(ReferencePath -> WithMetadataValue('Extension', '.nupkg'))" />
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths -> WithMetadataValue('Extension', '.nupkg'))" />
     </ItemGroup>
   </Target>
 
