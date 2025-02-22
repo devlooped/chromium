@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectProperty Include="NativeVersion" />
+    <ProjectProperty Include="RuntimeIdentifiers" />
     <None Update="runtimes.msbuild" PackFolder="tools" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
