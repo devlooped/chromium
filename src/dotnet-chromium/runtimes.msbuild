@@ -9,7 +9,7 @@
     <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">linux-x64</RuntimePlatform>
     <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">linux-arm64</RuntimePlatform>
     <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">win-x64</RuntimePlatform>
-    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' != 'X64'">win-x64</RuntimePlatform>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' != 'X64'">win-x86</RuntimePlatform>
     <!-- We don't ship binaries for OSX for now -->
     <!--
     <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">osx-x64</RuntimePlatform>

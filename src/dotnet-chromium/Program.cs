@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Playwright;
+using Spectre.Console;
 
 if (args.Any(x => x == "--debug"))
     Debugger.Launch();
@@ -16,14 +17,16 @@ if (chromium == null)
         ThisAssembly.Project.NativeVersion,
         "runtimes",
         RuntimeInformation.RuntimeIdentifier,
-        "native");
+        "native",
+        Environment.OSVersion.Platform == PlatformID.Win32NT ? "chrome.exe" : "chrome");
 
     // Attempt to use dotnet restore to download it.
-    if (!Directory.Exists(chromium))
-        await DotNetMuxer.TryRestore();
+    if (!File.Exists(chromium))
+        await AnsiConsole.Status().StartAsync($"Restoring chromium.{RuntimeInformation.RuntimeIdentifier} v{ThisAssembly.Project.NativeVersion}...", 
+            async ctx => await DotNetMuxer.TryRestore());
 
     // If it still doesn't exist after an attempted restore, then we can't continue.
-    if (!Directory.Exists(chromium))
+    if (!File.Exists(chromium))
     {
         Console.WriteLine($"Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported.");
         return -1;
@@ -31,7 +34,8 @@ if (chromium == null)
 }
 
 #if DEBUG
-Console.WriteLine($"Located compatible Chromium at {chromium}");
+// format as ansiconsole link
+AnsiConsole.MarkupLine($"Located compatible [link={chromium}]{RuntimeInformation.RuntimeIdentifier} Chromium[/]");
 #endif
 
 using var playwright = await Playwright.CreateAsync();
@@ -54,9 +58,8 @@ page.FrameNavigated += async (sender, args) =>
         {
             Timeout = 0,
         });
-
         // Example of how to get the page body HTML
-        Console.WriteLine(await page.InnerHTMLAsync("body"));
+        //Console.WriteLine(await page.InnerHTMLAsync("body"));
     }
     catch (PlaywrightException)
     {
@@ -72,10 +75,9 @@ if (arg != null)
         Timeout = 0,
         WaitUntil = WaitUntilState.NetworkIdle
     });
-    Console.WriteLine(await page.InnerHTMLAsync("body"));
-}
 
-Console.WriteLine("Press Enter to exit.");
-Console.ReadLine();
+    var html = await page.InnerTextAsync("body");
+    AnsiConsole.MarkupLine($"[dim]{html}[/]");
+}
 
 return 0;

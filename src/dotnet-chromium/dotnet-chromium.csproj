@@ -9,19 +9,21 @@
     <PackAsTool>true</PackAsTool>
     <!-- See: https://github.com/dotnet/msbuild/pull/5499 -->
     <IncrementalCleanDependsOn>IncludePlayright;$(IncrementalCleanDependsOn)</IncrementalCleanDependsOn>
-    <!--<RuntimeIdentifiers>win-x64;linux-x64;osx-x64</RuntimeIdentifiers>-->
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
+    <PackageReference Include="Spectre.Console" />
     <PackageReference Include="ThisAssembly.Project" PrivateAssets="all" />
-    <!--
-    <PackageReference Include="chromium.linux-x64" />
-    <PackageReference Include="chromium.win-x64" />
-    <PackageReference Include="chromium.win-x86" />
-    -->
+  </ItemGroup>
+
+  <ItemGroup Condition="!$(CI) and '' != ''">
+    <!-- In local builds, we can just rely on restore/build -->
+    <PackageReference Include="chromium.linux-x64" Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'" />
+    <PackageReference Include="chromium.win-x64" Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'" />
+    <PackageReference Include="chromium.win-x86" Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' != 'X64'" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,19 +40,8 @@
       <_RemoveCandidate Include="@(None)" Exclude="@(_PlaywrightCopyItems)" />
       <!-- We don't want a fat package with all native runtimes -->
       <None Remove="@(_RemoveCandidate)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
-      <!-- We instead include the csproj itself and restore it on startup as needed -->
     </ItemGroup>
   </Target>
-
-  <!--
-  <Target Name="AddRuntimeDependencies" BeforeTargets="GetPackageContents">
-    <ItemGroup>
-      <RuntimeIdentifier Include="$(RuntimeIdentifiers)" />
-      <PackageFile Include="@(RuntimeIdentifier -> 'chromium.%(Identity)')" Version="$(NativeVersion)" PackFolder="Dependency" />
-      <PackageFile Include="..\_._" PackFolder="runtimes\%(RuntimeIdentifier.Identity)\native" />
-    </ItemGroup>
-  </Target>
-  -->
 
   <Target Name="IncludePlayright" BeforeTargets="InferToolContents" DependsOnTargets="CopyPlaywrightFilesToOutput">
     <ItemGroup>
