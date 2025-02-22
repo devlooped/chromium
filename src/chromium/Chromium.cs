@@ -12,7 +12,6 @@ public static class Chromium
     static Chromium()
     {
         // Locate proper runtime binaries
-        var chromeDir = default(string);
         var chromeFile = "chrome";
         if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             chromeFile += ".exe";
@@ -22,13 +21,13 @@ public static class Chromium
             // In the local debug/run scenario, we will find the runtimes copied locally under the base directory
             var candidate = System.IO.Path.Combine(AppContext.BaseDirectory, "runtimes", runtime.Runtime, "native");
             if (Directory.Exists(candidate))
-                chromeDir = candidate;
-        }
-
-        if (chromeDir != null)
-        {
-            Path = System.IO.Path.Combine(chromeDir, chromeFile);
-            return;
+            {
+                if (File.Exists(System.IO.Path.Combine(candidate, chromeFile)))
+                {
+                    Path = System.IO.Path.Combine(candidate, chromeFile);
+                    break;
+                }
+            }
         }
 
         // In the installed tool scenario, we need to go up to the tool project restore root 
