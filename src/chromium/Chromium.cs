@@ -16,6 +16,10 @@ public static class Chromium
         if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             chromeFile += ".exe";
 
+        // if we have no runtime graph (deps.json), we can't really do anything.
+        if (DependencyContext.Default == null)
+            return;
+
         foreach (var runtime in DependencyContext.Default.RuntimeGraph)
         {
             // In the local debug/run scenario, we will find the runtimes copied locally under the base directory
@@ -48,8 +52,10 @@ public static class Chromium
                               from lib in target.Libraries
                               from native in lib.RuntimeTargets
                               where native.Runtime == runtime.Runtime &&
-                                    System.IO.Path.GetFileName(native.Path) == chromeFile
-                              let file = new FileInfo(System.IO.Path.Combine(rootDir, lib.Name, lib.Version.ToString(), native.Path))
+                                    System.IO.Path.GetFileName(native.Path) == chromeFile &&
+                                    !string.IsNullOrEmpty(lib.Name) && 
+                                    lib.Version != null
+                              let file = new FileInfo(System.IO.Path.Combine(rootDir, lib.Name!, lib.Version!.ToString(), native.Path))
                               where file.Exists
                               select file.FullName;
 

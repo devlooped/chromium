@@ -2,11 +2,11 @@
   "profiles": {
     "Chromium": {
       "commandName": "Project",
-      "commandLineArgs": "--headless https://clarius.org"
+      "commandLineArgs": "--headless https://api.ipify.org"
     },
     "WSL": {
       "commandName": "WSL2",
-      "commandLineArgs": "dotnet-chromium.dll --headless https://clarius.org",
+      "commandLineArgs": "dotnet-chromium.dll --headless https://api.ipify.org",
       "distributionName": ""
     }
   }

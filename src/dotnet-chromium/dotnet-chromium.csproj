@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>dotnet-chromium</PackageId>
     <Description>Allows running a portable version of Chromium via the command line on Windows and Linux.</Description>
-    <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
     <ToolCommandName>chromium</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <!-- See: https://github.com/dotnet/msbuild/pull/5499 -->
@@ -16,31 +15,46 @@
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
+    <PackageReference Include="Spectre.Console" />
+    <PackageReference Include="ThisAssembly.Project" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Condition="!$(CI) and '' != ''">
+    <!-- In local builds, we can just rely on restore/build -->
+    <PackageReference Include="chromium.linux-x64" Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'" />
+    <PackageReference Include="chromium.win-x64" Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'" />
+    <PackageReference Include="chromium.win-x86" Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' != 'X64'" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\chromium\chromium.csproj" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectProperty Include="NativeVersion" />
+    <None Update="runtimes.msbuild" PackFolder="tools" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <Target Name="TrimRuntimes" AfterTargets="InferToolContents">
     <ItemGroup>
-      <None Remove="@(None)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
+      <_RemoveCandidate Include="@(None)" Exclude="@(_PlaywrightCopyItems)" />
+      <!-- We don't want a fat package with all native runtimes -->
+      <None Remove="@(_RemoveCandidate)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
     </ItemGroup>
   </Target>
 
   <Target Name="IncludePlayright" BeforeTargets="InferToolContents" DependsOnTargets="CopyPlaywrightFilesToOutput">
     <ItemGroup>
       <Content Update="@(_PlaywrightCopyItems)" PackFolder="tools" Pack="true" />
-      <PlaywrightContent Include="@(Content -> HasMetadata('PlaywrightFolder'))" />
-      <PlaywrightContent Include="@(Content -> WithMetadataValue('Link', 'playwright.ps1'))" />
+      <PlaywrightContent Include="@(Content -&gt; HasMetadata('PlaywrightFolder'))" />
+      <PlaywrightContent Include="@(Content -&gt; WithMetadataValue('Link', 'playwright.ps1'))" />
       <FileWrites Include="@(PlaywrightContent -> '$(OutputPath)%(Link)')" />
     </ItemGroup>
   </Target>
 
-  <Target Name="AddRuntimeDependencies" BeforeTargets="GetPackageContents">
+  <Target Name="CleanPlayrightFromNugetizer" AfterTargets="InferPackageContents" Condition="'$(dotnet-nugetize)' != ''">
     <ItemGroup>
-      <RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
-      <PackageFile Include="@(RuntimeIdentifiers -> 'chromium.%(Identity)')" Version="$(Version)" PackFolder="Dependency" />
+      <PackageFile Remove="@(PackageFile)" Condition="&#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.PackagePath)', '').Contains('.playwright')) or &#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.TargetPath)', '').Contains('.playwright')) or &#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.Link)', '').Contains('.playwright'))" />
     </ItemGroup>
   </Target>
 
