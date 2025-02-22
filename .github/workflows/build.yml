@@ -61,7 +61,7 @@ jobs:
           find ./src/*/*/locales/  -type f -name "*.pak" -not -name "en-US.pak" -delete
           rm ./src/*/chrome-win/interactive_ui_tests.exe
 
-      - name: 🙏 build
+      - name: 🙏 build runtimes
         run: dotnet build -m:1 -bl:runtimes.binlog ./src/Runtimes.sln
 
       - name: 🙏 build
