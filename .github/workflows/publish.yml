@@ -23,6 +23,11 @@ jobs:
       - name: 🤘 checkout
         uses: actions/checkout@v4
 
+      - name: ⚙️ dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
       - name: ⏬ download
         run: |
           mkdir obj
