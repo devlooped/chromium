@@ -32,6 +32,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: 🤘 checkout
         uses: actions/checkout@v4
@@ -74,10 +76,66 @@ jobs:
           name: logs
           path: '*.binlog'
 
+      - name: ⬆️ upload
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pkg
+          path: bin/*
+
+  test:
+    needs: build
+    name: test-${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ 'ubuntu-latest', 'windows-latest' ]
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v4
+        with: 
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: ⬇️ artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: pkg
+          path: bin
+
+      - name: 🧪 test
+        shell: pwsh
+        run: |
+          $fileName = gci -path ./bin -file | where { $_.name -like "chromium.*" } | select -first 1 -ExpandProperty name
+          $version = $fileName -replace '^chromium\.' -replace '\.nupkg$'
+          $source = join-path "${{ github.workspace }}" "bin"
+          dotnet nuget add source $source
+          dotnet tool install -g dotnet-chromium --version $version
+          chromium --headless https://api.ipify.org
+
+  push:
+    needs: test
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: pkg
+          path: bin
+
+      - name: ⚙ dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.x
+            9.x
+
       - name: 🚀 sleet
         env:
           SLEET_CONNECTION: ${{ secrets.SLEET_CONNECTION }}
         if: env.SLEET_CONNECTION != ''
         run: |
           dotnet tool update sleet -g --allow-downgrade --version $(curl -s --compressed ${{ vars.SLEET_FEED_URL }} | jq '.["sleet:version"]' -r)        
-          sleet push bin --config none -f --verbose -p "SLEET_FEED_CONTAINER=nuget" -p "SLEET_FEED_CONNECTIONSTRING=${{ secrets.SLEET_CONNECTION }}" -p "SLEET_FEED_TYPE=azure" || echo "No packages found"
+          sleet push ./bin/*.nupkg --config none -f --verbose -p "SLEET_FEED_CONTAINER=nuget" -p "SLEET_FEED_CONNECTIONSTRING=${{ secrets.SLEET_CONNECTION }}" -p "SLEET_FEED_TYPE=azure" || echo "No packages found"
+
