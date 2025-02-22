@@ -1,6 +1,6 @@
 <Project InitialTargets="SetLocalVersion">
 
-  <PropertyGroup Condition="'$(RuntimeIdentifier)' != '' and '$(RuntimeIdentifier)' != 'any'">
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
     <EnableDefaultItems>false</EnableDefaultItems>
     <RuntimeOs>$(RuntimeIdentifier.Substring(0, $(RuntimeIdentifier.IndexOf('-'))))</RuntimeOs>
     <RuntimeOs Condition="'$(RuntimeOs)' == 'mac'">osx</RuntimeOs>

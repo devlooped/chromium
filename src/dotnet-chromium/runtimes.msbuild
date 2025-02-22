@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.Build.NoTargets/3.5.0">
+
+  <PropertyGroup>
+    <Description>Helper project to restore relevant runtimes.</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">linux-x64</RuntimePlatform>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">linux-arm64</RuntimePlatform>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">win-x64</RuntimePlatform>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' != 'X64'">win-x64</RuntimePlatform>
+    <!-- We don't ship binaries for OSX for now -->
+    <!--
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">osx-x64</RuntimePlatform>
+    <RuntimePlatform Condition="'$(RuntimePlatform)' == '' AND $([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">osx-arm64</RuntimePlatform>
+    -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="chromium.$(RuntimePlatform)" Version="$(NativeVersion)" VersionOverride="$(NativeVersion)" 
+                      Condition="'$(NativeVersion)' != '' and '$(RuntimePlatform)' != ''" />
+  </ItemGroup>
+
+</Project>

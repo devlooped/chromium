@@ -9,30 +9,48 @@
     <PackAsTool>true</PackAsTool>
     <!-- See: https://github.com/dotnet/msbuild/pull/5499 -->
     <IncrementalCleanDependsOn>IncludePlayright;$(IncrementalCleanDependsOn)</IncrementalCleanDependsOn>
+    <!--<RuntimeIdentifiers>win-x64;linux-x64;osx-x64</RuntimeIdentifiers>-->
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NuGetizer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" />
     <PackageReference Include="Microsoft.Playwright" />
+    <PackageReference Include="ThisAssembly.Project" PrivateAssets="all" />
+    <!--
     <PackageReference Include="chromium.linux-x64" />
     <PackageReference Include="chromium.win-x64" />
     <PackageReference Include="chromium.win-x86" />
+    -->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\chromium\chromium.csproj" PrivateAssets="all" />
   </ItemGroup>
 
-  <Target Name="TrimRuntimes" AfterTargets="InferToolContents" DependsOnTargets="_GenerateRestoreGraph">
+  <ItemGroup>
+    <ProjectProperty Include="NativeVersion" />
+    <None Update="runtimes.msbuild" PackFolder="tools" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="TrimRuntimes" AfterTargets="InferToolContents">
     <ItemGroup>
-      <None Remove="@(None)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
-      <PackageFile Include="@(PackageReference)" 
-                   Version="$(NativeVersion)" 
-                   PackFolder="Dependency"
-                   Condition="$([System.String]::new('%(PackageReference.Identity)').StartsWith('chromium.')) "/>
+      <_RemoveCandidate Include="@(None)" Exclude="@(_PlaywrightCopyItems)" />
+      <!-- We don't want a fat package with all native runtimes -->
+      <None Remove="@(_RemoveCandidate)" Condition="$([MSBuild]::ValueOrDefault('%(None.PackagePath)', '').Contains('/runtimes/'))" />
+      <!-- We instead include the csproj itself and restore it on startup as needed -->
     </ItemGroup>
   </Target>
+
+  <!--
+  <Target Name="AddRuntimeDependencies" BeforeTargets="GetPackageContents">
+    <ItemGroup>
+      <RuntimeIdentifier Include="$(RuntimeIdentifiers)" />
+      <PackageFile Include="@(RuntimeIdentifier -> 'chromium.%(Identity)')" Version="$(NativeVersion)" PackFolder="Dependency" />
+      <PackageFile Include="..\_._" PackFolder="runtimes\%(RuntimeIdentifier.Identity)\native" />
+    </ItemGroup>
+  </Target>
+  -->
 
   <Target Name="IncludePlayright" BeforeTargets="InferToolContents" DependsOnTargets="CopyPlaywrightFilesToOutput">
     <ItemGroup>
@@ -40,6 +58,12 @@
       <PlaywrightContent Include="@(Content -&gt; HasMetadata('PlaywrightFolder'))" />
       <PlaywrightContent Include="@(Content -&gt; WithMetadataValue('Link', 'playwright.ps1'))" />
       <FileWrites Include="@(PlaywrightContent -> '$(OutputPath)%(Link)')" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CleanPlayrightFromNugetizer" AfterTargets="InferPackageContents" Condition="'$(dotnet-nugetize)' != ''">
+    <ItemGroup>
+      <PackageFile Remove="@(PackageFile)" Condition="&#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.PackagePath)', '').Contains('.playwright')) or &#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.TargetPath)', '').Contains('.playwright')) or &#xD;&#xA;        $([MSBuild]::ValueOrDefault('%(PackageFile.Link)', '').Contains('.playwright'))" />
     </ItemGroup>
   </Target>
 

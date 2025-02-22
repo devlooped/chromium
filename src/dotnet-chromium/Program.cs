@@ -1,24 +1,44 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Microsoft.Playwright;
 
 if (args.Any(x => x == "--debug"))
     Debugger.Launch();
 
-if (Chromium.Path == null)
+var chromium = Chromium.Path;
+
+if (chromium == null)
 {
-    Console.WriteLine($"Current runtime {System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier} is not supported.");
-    return -1;
+    chromium = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        ".nuget", "packages",
+        $"chromium.{RuntimeInformation.RuntimeIdentifier}",
+        ThisAssembly.Project.NativeVersion,
+        "runtimes",
+        RuntimeInformation.RuntimeIdentifier,
+        "native");
+
+    // Attempt to use dotnet restore to download it.
+    if (!Directory.Exists(chromium))
+        await DotNetMuxer.TryRestore();
+
+    // If it still doesn't exist after an attempted restore, then we can't continue.
+    if (!Directory.Exists(chromium))
+    {
+        Console.WriteLine($"Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported.");
+        return -1;
+    }
 }
 
 #if DEBUG
-Console.WriteLine($"Located compatible Chromium at {Chromium.Path}");
+Console.WriteLine($"Located compatible Chromium at {chromium}");
 #endif
 
 using var playwright = await Playwright.CreateAsync();
 await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 {
     Args = args.Where(x => x.StartsWith("--") && x != "--debug"),
-    ExecutablePath = Chromium.Path,
+    ExecutablePath = chromium,
     Headless = args.Contains("--headless"),
 });
 

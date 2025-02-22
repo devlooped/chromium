@@ -121,3 +121,9 @@
 	sha = 032439dbf180fca0539a5bd3a019f18ab3484b76
 	etag = da7c0104131bd474b52fc9bc9f9bda6470e24ae38d4fb9f5c4f719bc01370ab5
 	weak
+[file "src/dotnet-chromium/System/DotnetMuxer.cs"]
+	url = https://github.com/devlooped/catbag/blob/main/System/DotnetMuxer.cs
+	sha = 91dd826942b6597797b74d1a0eebd228bcc21bf2
+
+	etag = 0d754befca26c4f0474f995983aa29e20c6d32f3a3dea17b1d6fb3f93b2d0986
+	weak
