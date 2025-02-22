@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Playwright;
+using NuGet.Versioning;
 using Spectre.Console;
 
 if (args.Any(x => x == "--debug"))
@@ -25,6 +26,10 @@ var runtime = arch == null ? RuntimeInformation.RuntimeIdentifier :
 
 if (chromium == null)
 {
+    var packageDir = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        ".nuget", "packages", $"chromium.{runtime}");
+
     chromium = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
         ".nuget", "packages",
@@ -40,10 +45,32 @@ if (chromium == null)
         await AnsiConsole.Status().StartAsync($"Restoring chromium.{runtime} v{ThisAssembly.Project.NativeVersion}...",
             async ctx => await DotNetMuxer.TryRestore());
 
+    var versionDir = Directory.EnumerateDirectories(packageDir)
+        .Select(x => new DirectoryInfo(x))
+        .OrderByDescending(x => NuGetVersion.Parse(x.Name))
+        .FirstOrDefault();
+
+    if (versionDir != null)
+    {
+        // We may have gotten a newer or slightly older/newer version, be flexible in our case.
+        chromium = Path.Combine(
+            versionDir.FullName,
+            "runtimes", runtime, "native",
+            Environment.OSVersion.Platform == PlatformID.Win32NT ? "chrome.exe" : "chrome");
+    }
+
     // If it still doesn't exist after an attempted restore, then we can't continue.
     if (!File.Exists(chromium))
     {
-        AnsiConsole.MarkupLine($"[red]Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported.[/]");
+        AnsiConsole.MarkupLine($"[red]Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported for v{ThisAssembly.Project.NativeVersion}.[/]");
+        if (DependencyContext.Default != null && args.Any(x => x == "--debug"))
+        {
+            AnsiConsole.MarkupLine($"[yellow]Compatible runtimes:[/]");
+            foreach (var rg in DependencyContext.Default.RuntimeGraph)
+            {
+                AnsiConsole.MarkupLine($"[dim]- {rg.Runtime}[/]");
+            }
+        }
         return -1;
     }
 }
