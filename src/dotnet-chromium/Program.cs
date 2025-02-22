@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Extensions.DependencyModel;
 using Microsoft.Playwright;
 using Spectre.Console;
 
@@ -7,35 +8,49 @@ if (args.Any(x => x == "--debug"))
     Debugger.Launch();
 
 var chromium = Chromium.Path;
+var arch = RuntimeInformation.OSArchitecture switch
+{
+    Architecture.X64 => "x64",
+    Architecture.X86 => "x86",
+    // we don't ship arm binaries for now.
+    _ => null
+};
+
+var runtime = arch == null ? RuntimeInformation.RuntimeIdentifier :
+    RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? $"win-{arch}" :
+    RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? $"linux-{arch}" :
+    // We don't ship osx binaries for now.
+    //RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? $"osx-{arch}" :
+    RuntimeInformation.RuntimeIdentifier;
 
 if (chromium == null)
 {
     chromium = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
         ".nuget", "packages",
-        $"chromium.{RuntimeInformation.RuntimeIdentifier}",
+        $"chromium.{runtime}",
         ThisAssembly.Project.NativeVersion,
         "runtimes",
-        RuntimeInformation.RuntimeIdentifier,
+        runtime,
         "native",
         Environment.OSVersion.Platform == PlatformID.Win32NT ? "chrome.exe" : "chrome");
 
-    // Attempt to use dotnet restore to download it.
+    // Attempt to use dotnet restore to download it
     if (!File.Exists(chromium))
-        await AnsiConsole.Status().StartAsync($"Restoring chromium.{RuntimeInformation.RuntimeIdentifier} v{ThisAssembly.Project.NativeVersion}...", 
+        await AnsiConsole.Status().StartAsync($"Restoring chromium.{runtime} v{ThisAssembly.Project.NativeVersion}...",
             async ctx => await DotNetMuxer.TryRestore());
 
     // If it still doesn't exist after an attempted restore, then we can't continue.
     if (!File.Exists(chromium))
     {
-        Console.WriteLine($"Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported.");
+        AnsiConsole.MarkupLine($"[red]Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported.[/]");
         return -1;
     }
 }
 
 #if DEBUG
 // format as ansiconsole link
-AnsiConsole.MarkupLine($"Located compatible [link={chromium}]{RuntimeInformation.RuntimeIdentifier} Chromium[/]");
+AnsiConsole.MarkupLine($"Located compatible [lime][link={chromium}]{RuntimeInformation.RuntimeIdentifier} Chromium[/][/]");
 #endif
 
 using var playwright = await Playwright.CreateAsync();
@@ -65,7 +80,7 @@ page.FrameNavigated += async (sender, args) =>
     {
         // Will be thrown when the app is shutting down, so ignore
         return;
-    }   
+    }
 };
 
 if (arg != null)
