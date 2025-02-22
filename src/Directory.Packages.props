@@ -6,7 +6,7 @@
 
   <PropertyGroup Condition="$(CI)">
     <NoWarn>$(NoWarn);NU1507</NoWarn>
-    <RestoreSources>$(PackageOutputPath);https://api.nuget.org/v3/index.json</RestoreSources>
+    <RestoreSources Condition="Exists('$(PackageOutputPath)')">$(PackageOutputPath);https://api.nuget.org/v3/index.json</RestoreSources>
 
     <NativeVersion Condition="'$(PackageVersion)' != ''">$(PackageVersion)</NativeVersion>
     <NativeVersion Condition="'$(PackageVersion)' == ''">$(Version)</NativeVersion>
