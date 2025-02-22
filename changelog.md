@@ -1,5 +1,21 @@
 # Changelog
 
+## [v2025.02.22](https://github.com/devlooped/chromium/tree/v2025.02.22) (2025-02-22)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.16...v2025.02.22)
+
+:sparkles: Implemented enhancements:
+
+- Showcase how to do dynamic runtime native dependencies [\#102](https://github.com/devlooped/chromium/pull/102) (@kzu)
+
+:bug: Fixed bugs:
+
+- Only consider a successfull path if it actually exists [\#104](https://github.com/devlooped/chromium/pull/104) (@kzu)
+
+:twisted_rightwards_arrows: Merged:
+
+- Run chromium cross-platform test [\#105](https://github.com/devlooped/chromium/pull/105) (@kzu)
+
 ## [v2025.02.16](https://github.com/devlooped/chromium/tree/v2025.02.16) (2025-02-08)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.07...v2025.02.16)
