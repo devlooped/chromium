@@ -108,6 +108,11 @@ jobs:
           name: pkg
           path: bin
 
+      - name: ⚙️ dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
       - name: 🚀 sleet
         env:
           SLEET_CONNECTION: ${{ secrets.SLEET_CONNECTION }}
