@@ -123,7 +123,7 @@
 	weak
 [file "src/dotnet-chromium/System/DotnetMuxer.cs"]
 	url = https://github.com/devlooped/catbag/blob/main/System/DotnetMuxer.cs
-	sha = 91dd826942b6597797b74d1a0eebd228bcc21bf2
+	sha = b8556d40c2e669ae6455fa19948133e1e3c87306
 
-	etag = 0d754befca26c4f0474f995983aa29e20c6d32f3a3dea17b1d6fb3f93b2d0986
+	etag = 6f3264c622a89bc84836de0b1755be60967ffb224c4a28dc0b6744448ff1e5b4
 	weak
