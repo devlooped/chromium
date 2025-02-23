@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Playwright;
 using NuGet.Versioning;
@@ -72,6 +73,16 @@ if (chromium == null)
             }
         }
         return -1;
+    }
+}
+
+if (!OperatingSystem.IsWindows())
+{
+    var mode = File.GetUnixFileMode(chromium);
+    if (!mode.HasFlag(UnixFileMode.UserExecute))
+    {
+        mode |= UnixFileMode.UserExecute;
+        File.SetUnixFileMode(chromium, mode);
     }
 }
 
