@@ -1,19 +1,23 @@
 # Changelog
 
-## [v2025.02.22](https://github.com/devlooped/chromium/tree/v2025.02.22) (2025-02-22)
+## [v2025.02.23](https://github.com/devlooped/chromium/tree/v2025.02.23) (2025-02-23)
 
-[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.16...v2025.02.22)
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.16...v2025.02.23)
 
 :sparkles: Implemented enhancements:
 
+- Make version location more flexible [\#106](https://github.com/devlooped/chromium/pull/106) (@kzu)
 - Showcase how to do dynamic runtime native dependencies [\#102](https://github.com/devlooped/chromium/pull/102) (@kzu)
 
 :bug: Fixed bugs:
 
+- Make sure chromium is executable in \*nix [\#110](https://github.com/devlooped/chromium/pull/110) (@kzu)
+- Fix path lookup using normalized package version [\#108](https://github.com/devlooped/chromium/pull/108) (@kzu)
 - Only consider a successfull path if it actually exists [\#104](https://github.com/devlooped/chromium/pull/104) (@kzu)
 
 :twisted_rightwards_arrows: Merged:
 
+- Make sure we test before release too [\#107](https://github.com/devlooped/chromium/pull/107) (@kzu)
 - Run chromium cross-platform test [\#105](https://github.com/devlooped/chromium/pull/105) (@kzu)
 
 ## [v2025.02.16](https://github.com/devlooped/chromium/tree/v2025.02.16) (2025-02-08)
