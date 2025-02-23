@@ -34,7 +34,7 @@ if (chromium == null)
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
         ".nuget", "packages",
         $"chromium.{runtime}",
-        ThisAssembly.Project.NativeVersion,
+        NuGetVersion.Parse(ThisAssembly.Project.NativeVersion).ToNormalizedString(),
         "runtimes",
         runtime,
         "native",
@@ -62,7 +62,7 @@ if (chromium == null)
     // If it still doesn't exist after an attempted restore, then we can't continue.
     if (!File.Exists(chromium))
     {
-        AnsiConsole.MarkupLine($"[red]Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported for v{ThisAssembly.Project.NativeVersion}.[/]");
+        AnsiConsole.MarkupLine($"[red]Current runtime {RuntimeInformation.RuntimeIdentifier} is not supported for v{NuGetVersion.Parse(ThisAssembly.Project.NativeVersion).ToNormalizedString()}.[/]");
         if (DependencyContext.Default != null && args.Any(x => x == "--debug"))
         {
             AnsiConsole.MarkupLine($"[yellow]Compatible runtimes:[/]");
