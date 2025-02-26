@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/nuget/v/dotnet-chromium.svg?color=royalblue)](https://www.nuget.org/packages/dotnet-chromium) 
 [![Downloads](https://img.shields.io/nuget/dt/dotnet-chromium.svg?color=green)](https://www.nuget.org/packages/dotnet-chromium) 
 [![License](https://img.shields.io/github/license/devlooped/chromium.svg?color=blue)](https://github.com/devlooped/chromium/blob/main/license.txt) 
-[![Build](https://github.com/devlooped/chromium/workflows/build/badge.svg?branch=main)](https://github.com/devlooped/chromium/actions)
+[![Build](https://github.com/devlooped/chromium/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/chromium/actions)
 
 Chromium for .NET 6+.
 
