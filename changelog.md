@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2025.3.1](https://github.com/devlooped/chromium/tree/v2025.3.1) (2025-02-26)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.23...v2025.3.1)
+
+:bug: Fixed bugs:
+
+- Omit leading zeroes in released version [\#111](https://github.com/devlooped/chromium/pull/111) (@kzu)
+
 ## [v2025.02.23](https://github.com/devlooped/chromium/tree/v2025.02.23) (2025-02-23)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.02.16...v2025.02.23)
