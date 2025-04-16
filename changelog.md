@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2025.4.16](https://github.com/devlooped/chromium/tree/v2025.4.16) (2025-04-01)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2025.4.1...v2025.4.16)
+
 ## [v2025.4.1](https://github.com/devlooped/chromium/tree/v2025.4.1) (2025-03-31)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.3.31...v2025.4.1)
