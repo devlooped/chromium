@@ -33,8 +33,8 @@
 	weak
 [file ".github/dependabot.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/dependabot.yml
-	sha = 49661dbf0720cde93eb5569be7523b5912351560
-	etag = c147ea2f3431ca0338c315c4a45b56ee233c4d30f8d6ab698d0e1980a257fd6a
+	sha = 917ff5486e25bec90038e7ab6d146fd82c61f846
+	etag = 50bf50df5a6eeb1705baea50f4c6e06d167a89cb5a590887ff939bd4120bd442
 	weak
 [file ".github/workflows/build.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/build.yml
@@ -126,4 +126,9 @@
 	sha = b8556d40c2e669ae6455fa19948133e1e3c87306
 
 	etag = 6f3264c622a89bc84836de0b1755be60967ffb224c4a28dc0b6744448ff1e5b4
+	weak
+[file ".github/actions/dotnet/action.yml"]
+	url = https://github.com/devlooped/oss/blob/main/.github/actions/dotnet/action.yml
+	sha = 08c70776943839f73dbea2e65355108747468508
+	etag = a5f1fa7f652cc2c2e13b7c236e5f8403aea26667d6a040c84ef976af267af6ab
 	weak
