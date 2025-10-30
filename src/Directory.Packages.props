@@ -16,7 +16,7 @@
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
     <PackageVersion Include="Devlooped.SponsorLink" Version="1.1.0" />
-    <PackageVersion Include="Spectre.Console" Version="0.49.1" />
+    <PackageVersion Include="Spectre.Console" Version="0.53.0" />
     <PackageVersion Include="ThisAssembly.Project" Version="2.0.12" />
     <PackageVersion Include="chromium.linux-x64" Version="$(NativeVersion)" />
     <PackageVersion Include="chromium.win-x64" Version="$(NativeVersion)" />
