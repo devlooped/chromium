@@ -95,7 +95,7 @@ jobs:
           $source = join-path "${{ github.workspace }}" "bin"
           dotnet nuget add source $source
           dotnet tool install -g dotnet-chromium --version $version
-          chromium --headless https://api.ipify.org
+          chromium --headless --no-sandbox https://api.ipify.org
 
   push:
     needs: test
