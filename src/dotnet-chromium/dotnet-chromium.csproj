@@ -50,6 +50,15 @@
       <PlaywrightContent Include="@(Content -&gt; HasMetadata('PlaywrightFolder'))" />
       <PlaywrightContent Include="@(Content -&gt; WithMetadataValue('Link', 'playwright.ps1'))" />
       <FileWrites Include="@(PlaywrightContent -> '$(OutputPath)%(Link)')" />
+      <!-- Include all platform Playwright node files for cross-platform tool support -->
+      <_AllPlaywrightNodes Include="$(PkgMicrosoft_Playwright)\.playwright\node\**\*" />
+      <_AllPlaywrightPackage Include="$(PkgMicrosoft_Playwright)\.playwright\package\**\*" />
+      <Content Include="@(_AllPlaywrightNodes)" Pack="true" PackFolder="tools" 
+               Link=".playwright\node\%(RecursiveDir)%(Filename)%(Extension)" />
+      <Content Include="@(_AllPlaywrightPackage)" Pack="true" PackFolder="tools" 
+               Link=".playwright\package\%(RecursiveDir)%(Filename)%(Extension)" />
+      <Content Include="$(PkgMicrosoft_Playwright)\build\playwright.ps1" Pack="true" PackFolder="tools" 
+               Link="playwright.ps1" />
     </ItemGroup>
   </Target>
 
