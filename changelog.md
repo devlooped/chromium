@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2026.1.14](https://github.com/devlooped/chromium/tree/v2026.1.14) (2026-01-14)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2026.1.1...v2026.1.14)
+
+:twisted_rightwards_arrows: Merged:
+
+- Fix CI test failures for Ubuntu 23.10+ sandbox restrictions and cross-platform Playwright packaging [\#232](https://github.com/devlooped/chromium/pull/232) (@Copilot)
+- Create scheduled releases as drafts [\#230](https://github.com/devlooped/chromium/pull/230) (@Copilot)
+
 ## [v2026.1.1](https://github.com/devlooped/chromium/tree/v2026.1.1) (2025-12-31)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2025.12.31...v2026.1.1)
