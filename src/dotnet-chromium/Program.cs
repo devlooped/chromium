@@ -92,16 +92,9 @@ AnsiConsole.MarkupLine($"Located compatible [lime][link={chromium}]{RuntimeInfor
 #endif
 
 using var playwright = await Playwright.CreateAsync();
-
-// On Linux, --no-sandbox is required on Ubuntu 23.10+ and other distros that have disabled 
-// unprivileged user namespaces with AppArmor. See https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
-var launchArgs = args.Where(x => x.StartsWith("--") && x != "--debug").ToList();
-if (OperatingSystem.IsLinux() && !launchArgs.Any(x => x.StartsWith("--no-sandbox")))
-    launchArgs.Add("--no-sandbox");
-
 await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
 {
-    Args = launchArgs,
+    Args = args.Where(x => x.StartsWith("--") && x != "--debug"),
     ExecutablePath = chromium,
     Headless = args.Contains("--headless"),
 });
