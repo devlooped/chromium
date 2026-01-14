@@ -111,7 +111,12 @@ jobs:
           $source = join-path "${{ github.workspace }}" "bin"
           dotnet nuget add source $source
           dotnet tool install -g dotnet-chromium --version $version
-          chromium --headless https://api.ipify.org
+          # On Linux, --no-sandbox is required on Ubuntu 23.10+ due to AppArmor restrictions
+          if ($IsLinux) {
+            chromium --headless --no-sandbox https://api.ipify.org
+          } else {
+            chromium --headless https://api.ipify.org
+          }
 
   push:
     needs: test
