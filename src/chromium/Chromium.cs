@@ -53,7 +53,7 @@ public static class Chromium
                               from native in lib.RuntimeTargets
                               where native.Runtime == runtime.Runtime &&
                                     System.IO.Path.GetFileName(native.Path) == chromeFile &&
-                                    !string.IsNullOrEmpty(lib.Name) && 
+                                    !string.IsNullOrEmpty(lib.Name) &&
                                     lib.Version != null
                               let file = new FileInfo(System.IO.Path.Combine(rootDir, lib.Name!, lib.Version!.ToString(), native.Path))
                               where file.Exists
