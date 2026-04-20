@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/devlooped/chromium.svg?color=blue)](https://github.com/devlooped/chromium/blob/main/license.txt) 
 [![Build](https://github.com/devlooped/chromium/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/chromium/actions)
 
-Chromium for .NET 6+.
+Chromium for .NET 8+.
 
 This project allows running a portable embedded version of Chromium from 
 either a .NET CLI tool or a regular .NET application without having to install 
