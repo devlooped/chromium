@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2026.5.16](https://github.com/devlooped/chromium/tree/v2026.5.16) (2026-05-08)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2026.5.1...v2026.5.16)
+
+:twisted_rightwards_arrows: Merged:
+
+- Bump Chromium to .NET 8 LTS [\#342](https://github.com/devlooped/chromium/pull/342) (@Copilot)
+
 ## [v2026.5.1](https://github.com/devlooped/chromium/tree/v2026.5.1) (2026-04-20)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2026.4.20...v2026.5.1)
