@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2026.5.31](https://github.com/devlooped/chromium/tree/v2026.5.31) (2026-05-18)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2026.5.16...v2026.5.31)
+
+:twisted_rightwards_arrows: Merged:
+
+- fix: set artifact retention to 1 day [\#367](https://github.com/devlooped/chromium/pull/367) (@kzu)
+
 ## [v2026.5.16](https://github.com/devlooped/chromium/tree/v2026.5.16) (2026-05-08)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2026.5.1...v2026.5.16)
