@@ -1,4 +1,4 @@
-﻿# Builds a final release version and pushes to nuget.org 
+# Builds a final release version and pushes to nuget.org 
 # whenever a release is published.
 # Requires: secrets.NUGET_API_KEY
 
@@ -66,6 +66,7 @@ jobs:
         with:
           name: pkg
           path: bin/*
+          retention-days: 1
 
   test:
     needs: build
