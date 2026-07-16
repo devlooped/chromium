@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2026.7.16](https://github.com/devlooped/chromium/tree/v2026.7.16) (2026-07-14)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2026.7.1...v2026.7.16)
+
+:twisted_rightwards_arrows: Merged:
+
+- fix: 1-day retention on publish nupkg artifacts [\#407](https://github.com/devlooped/chromium/pull/407) (@kzu)
+
 ## [v2026.7.1](https://github.com/devlooped/chromium/tree/v2026.7.1) (2026-06-22)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2026.6.16...v2026.7.1)
