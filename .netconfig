@@ -59,8 +59,8 @@
 	weak
 [file "Directory.Build.rsp"]
 	url = https://github.com/devlooped/oss/blob/main/Directory.Build.rsp
-	sha = 0f7f7f7e8a29de9b535676f75fe7c67e629a5e8c
-	etag = 0ccae83fc51f400bfd7058170bfec7aba11455e24a46a0d7e6a358da6486e255
+	sha = 320a5c5710f269ccb038b5e74146fed8b5a114ae
+	etag = 9872addf980da78842d42e70e72f90fb10ba52c1c2ccddc8aa9a2b83e0005679
 	weak
 [file "_config.yml"]
 	url = https://github.com/devlooped/oss/blob/main/_config.yml
@@ -79,13 +79,13 @@
 	weak
 [file "src/Directory.Build.props"]
 	url = https://github.com/devlooped/oss/blob/main/src/Directory.Build.props
-	sha = 6e2438919e108aeb75106dc0737c45f5e55d5f42
-	etag = f1d6384abf18d8d891ce5e835a10c73fe029c42151374be96d7e4af43d189c65
+	sha = 59861ddd1e330f3da410652b4c7fc6585726c0cf
+	etag = 1561f1be53cc25ac0cd85a06b3f65d69764b174d0f60bf72ca2f8fc70573b75e
 	weak
 [file "src/Directory.Build.targets"]
 	url = https://github.com/devlooped/oss/blob/main/src/Directory.Build.targets
-	sha = dcd5f0a9a00a5b0c23d41a71dcc66ea41dc5f75d
-	etag = 2cca66d8a1adbae24dc2efee53a55fa09949242eb35b86c5fd66425da18c6107
+	sha = 59861ddd1e330f3da410652b4c7fc6585726c0cf
+	etag = cb1f7a3e5bf85e7307407b7b6d8b9869330e2191a2317ccf6218a552e5890b08
 	weak
 [file "src/kzu.snk"]
 	url = https://github.com/devlooped/oss/blob/main/src/kzu.snk
@@ -123,9 +123,9 @@
 	weak
 [file "src/dotnet-chromium/System/DotnetMuxer.cs"]
 	url = https://github.com/devlooped/catbag/blob/main/System/DotnetMuxer.cs
-	sha = b8556d40c2e669ae6455fa19948133e1e3c87306
+	sha = 46b1f084ace577a280d9db0ab207a81df27c292e
 
-	etag = 6f3264c622a89bc84836de0b1755be60967ffb224c4a28dc0b6744448ff1e5b4
+	etag = 1dee7e7379a7bc3e3b44bbac5512050ccae79c9bf3abdd4d04e87114842d5e46
 	weak
 [file ".github/actions/dotnet/action.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/actions/dotnet/action.yml
