@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2026.10.16](https://github.com/devlooped/chromium/tree/v2026.10.16) (2026-10-08)
+
+[Full Changelog](https://github.com/devlooped/chromium/compare/v2026.10.1...v2026.10.16)
+
+:twisted_rightwards_arrows: Merged:
+
+- Bump requested dependencies together [\#462](https://github.com/devlooped/chromium/pull/462) (@Copilot)
+
 ## [v2026.10.1](https://github.com/devlooped/chromium/tree/v2026.10.1) (2026-09-16)
 
 [Full Changelog](https://github.com/devlooped/chromium/compare/v2026.9.16...v2026.10.1)
