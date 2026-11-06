@@ -50,6 +50,7 @@ namespace System
                 return mainModuleFullPath;
             }
 
+            // Framework-dependent / R2R: muxer is three levels above the shared runtime.
             // The currently running process may not be dotnet(.exe). For example,
             // it might be "testhost(.exe)" when running tests.
             // In this case, we can get the location where the CLR is installed,
@@ -58,8 +59,22 @@ namespace System
             var candidateDotNetExePath = Path.Combine(runtimeDirectory, "..", "..", "..", expectedFileName);
             if (File.Exists(candidateDotNetExePath))
             {
-                var normalizedPath = Path.GetFullPath(candidateDotNetExePath);
-                return normalizedPath;
+                return Path.GetFullPath(candidateDotNetExePath);
+            }
+
+            // Native AOT (e.g. dnx go default publish) reports the app dir as the runtime
+            // directory, so that walk is wrong — use DOTNET_HOST_PATH / DOTNET_ROOT.
+            if (Environment.GetEnvironmentVariable("DOTNET_HOST_PATH") is { Length: > 0 } host
+                && File.Exists(host))
+            {
+                return host;
+            }
+
+            if (Environment.GetEnvironmentVariable("DOTNET_ROOT") is { Length: > 0 } root)
+            {
+                var fromRoot = Path.Combine(root, expectedFileName);
+                if (File.Exists(fromRoot))
+                    return fromRoot;
             }
 
             return null;
